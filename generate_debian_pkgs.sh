@@ -71,6 +71,14 @@ function generate_binary_package()
                       --tmpdir="${BUILD_PREFIX}/bloom_tmp/${package_name}" \
                       --dpkg-shlibdeps-params="--ignore-missing-info -l${WORKSPACE_FOLDER}/install/lib/
                           -l${WORKSPACE_FOLDER}/install/lib/${package_name}/lib"
+   if [ $? -eq 0 ]
+   then
+     echo "Debian file built succesfully"
+   else
+     echo "Could not create debian file" >&2
+     exit 1
+   fi
+
 }
 # NOTE: Add here libraries that are included in the package directly and they are not a system dependency (like Qt for the routine generator app)
  
@@ -156,7 +164,13 @@ if [[ -v NUM_THREADS ]]; then
  
 else
    catkin_make install
- 
+   if [ $? -eq 0 ]
+   then
+     echo "Catkin Make install runned succesfully"
+   else
+     echo "Failed to run catkin make install" >&2
+     exit 1
+   fi
    # Runs in sequence if parallel has not been set
    for directory in $(get_package_paths $WORKSPACE_FOLDER); do
        generate_binary_package $directory
