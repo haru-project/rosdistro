@@ -121,6 +121,16 @@ behavior_tree_core:
       bionic: [ros-melodic-behavior-tree-core]
       xenial: [ros-kinetic-behavior-tree-core]
 
+behavior_tree_strawberry:
+    ubuntu: 
+      bionic: [ros-melodic-behavior-tree-strawberry]
+      xenial: [ros-kinetic-behavior-tree-strawberry]
+
+behavior_tree_haru:
+    ubuntu: 
+      bionic: [ros-melodic-behavior-tree-haru]
+      xenial: [ros-kinetic-behavior-tree-haru]
+
 haru_hanoi_tower_utils:
     ubuntu: 
       bionic: [ros-melodic-haru-hanoi-tower-utils]
