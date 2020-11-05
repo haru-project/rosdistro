@@ -193,6 +193,22 @@ libk4a1.3-dev:
 libk4abt1.0-dev:
     ubuntu: [libk4abt1.0-dev]
 
+
+haru_gazebo:
+    ubuntu: 
+      bionic: [ros-melodic-haru-gazebo]
+      xenial: [ros-kinetic-haru-gazebo]
+
+haru_description:
+    ubuntu: 
+      bionic: [ros-melodic-haru-description]
+      xenial: [ros-kinetic-haru-description]
+
+haru_simulator_examples:
+    ubuntu: 
+      bionic: [ros-melodic-haru-simulator-examples]
+      xenial: [ros-kinetic-haru-simulator-examples]
+
 nix_common:
     ubuntu: 
       bionic: [ros-melodic-nix-common]
