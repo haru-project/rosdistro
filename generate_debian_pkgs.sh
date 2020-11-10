@@ -59,20 +59,20 @@ function generate_binary_package()
    add_commit_to_control
  
    # Replace previous postint scripts if any
-   rm --force debian/postinst
-   cp --force $directory/postinst debian/
+   test -f debian/postinst && rm --force debian/postinst
+   test -f $directory/postinst && cp --force $directory/postinst debian/
    
    # Replace previous postrm scripts if any
-   rm --force debian/postrm
-   cp --force $directory/postrm debian/
+   test -f debian/postrm && rm --force debian/postrm
+   test -f $directory/postrm && cp --force $directory/postrm debian/
  
-   # Replace previous postrm scripts if any
-   rm --force debian/preinst
-   cp --force $directory/preinst debian/
+   # Replace previous preinst scripts if any
+   test -f debian/preinst && rm --force debian/preinst
+   test -f $directory/preinst && cp --force $directory/preinst debian/
  
-   # Replace previous postrm scripts if any
-   rm --force debian/prerm
-   cp --force $directory/prerm debian/
+   # Replace previous prerm scripts if any
+   test -f debian/prerm && rm --force debian/prerm
+   test -f $directory/prerm && cp --force $directory/prerm debian/
  
    # I didn't manage to pass pamaters to dh by calling the rules script directly, but
    # it seems it's possible to call dh by hand and add the options. The rules script
