@@ -135,7 +135,13 @@ haru_hanoi_tower_utils:
     ubuntu: 
       bionic: [ros-melodic-haru-hanoi-tower-utils]
       xenial: [ros-kinetic-haru-hanoi-tower-utils]
-  
+
+haru_utils:
+    ubuntu: 
+      bionic: [ros-melodic-haru-utils]
+      xenial: [ros-kinetic-haru-utils]
+
+
 zz_msgs:
     ubuntu: 
       bionic: [ros-melodic-zz-msgs]
