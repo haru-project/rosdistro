@@ -61,6 +61,10 @@ function generate_binary_package()
    # Replace previous postint scripts if any
    rm --force debian/postinst
    cp --force $directory/postinst debian/
+   
+   # Replace previous postrm scripts if any
+   rm --force debian/postrm
+   cp --force $directory/postrm debian/
  
    # I didn't manage to pass pamaters to dh by calling the rules script directly, but
    # it seems it's possible to call dh by hand and add the options. The rules script
