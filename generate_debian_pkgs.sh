@@ -66,6 +66,14 @@ function generate_binary_package()
    rm --force debian/postrm
    cp --force $directory/postrm debian/
  
+   # Replace previous postrm scripts if any
+   rm --force debian/preinst
+   cp --force $directory/preinst debian/
+ 
+   # Replace previous postrm scripts if any
+   rm --force debian/prerm
+   cp --force $directory/prerm debian/
+ 
    # I didn't manage to pass pamaters to dh by calling the rules script directly, but
    # it seems it's possible to call dh by hand and add the options. The rules script
    # will be executed automatically
