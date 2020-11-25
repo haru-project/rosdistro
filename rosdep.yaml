@@ -235,6 +235,11 @@ libignition-math2-dev:
       bionic: [libignition-math2-dev]
       xenial: [libignition-math2-dev]
 
+sox:
+    ubuntu:
+      bionic: [sox]
+      xenial: [sox]
+      
 nix_common:
     ubuntu: 
       bionic: [ros-melodic-nix-common]
