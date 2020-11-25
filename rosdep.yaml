@@ -226,10 +226,14 @@ haru_simulator_examples:
       xenial: [ros-kinetic-haru-simulator-examples]
 
 ffmpeg:
-    ubuntu: [ffmpeg]
+    ubuntu: 
+      bionic: [ffmpeg]
+      xenial: [ffmpeg]
 
 libignition-math2-dev:
-    ubuntu: [libignition-math2-dev]
+    ubuntu: 
+      bionic: [libignition-math2-dev]
+      xenial: [libignition-math2-dev]
 
 nix_common:
     ubuntu: 
