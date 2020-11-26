@@ -240,6 +240,9 @@ sox:
       bionic: [sox]
       xenial: [sox]
       
+libceres-dev:
+    ubuntu: [libceres-dev]
+  
 nix_common:
     ubuntu: 
       bionic: [ros-melodic-nix-common]
