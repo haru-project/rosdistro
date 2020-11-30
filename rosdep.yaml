@@ -225,6 +225,11 @@ haru_simulator_examples:
       bionic: [ros-melodic-haru-simulator-examples]
       xenial: [ros-kinetic-haru-simulator-examples]
 
+actors_simulator:
+    ubuntu:
+      bionic: [ros-melodic-actors-simulator]
+      xenial: [ros-kinetic-actors-simulator]
+      
 ffmpeg:
     ubuntu: 
       bionic: [ffmpeg]
