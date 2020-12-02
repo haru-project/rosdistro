@@ -209,6 +209,8 @@ libk4a1.3-dev:
 libk4abt1.0-dev:
     ubuntu: [libk4abt1.0-dev]
 
+libqt5webkit5-dev:
+    ubuntu: [libqt5webkit5-dev]
 
 haru_gazebo:
     ubuntu: 
