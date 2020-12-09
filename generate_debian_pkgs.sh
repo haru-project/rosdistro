@@ -39,7 +39,7 @@ function generate_binary_package()
    # Extract the package name from the CMakeLists.txt file. This is just to get an unique
    # id for each build folder. It could have been a number or a random string.
    # It doesn't have to be the package name
-   local package_name=$(grep -m 1 "project(" "${directory}/CMakeLists.txt" | cut -d"(" -f2 | cut -d" " -f1 | cut -d")" -f1)
+   package_name=$(grep -m 1 "project(" "${directory}/CMakeLists.txt" | cut -d"(" -f2 | cut -d" " -f1 | cut -d")" -f1)
  
    # Check if the package should be processed (because it's in the list or because)
    # all the packages should be processed
@@ -83,14 +83,17 @@ function generate_binary_package()
                       --tmpdir="${BUILD_PREFIX}/bloom_tmp/${package_name}" \
                       --dpkg-shlibdeps-params="--ignore-missing-info -l${WORKSPACE_FOLDER}/install/lib/
                           -l${WORKSPACE_FOLDER}/install/lib/${package_name}/lib"
-   if [ $? -eq 0 ]
-   then
-     echo "Debian file built succesfully"
-   else
-     echo "Could not create debian file" >&2
-     exit 1
+   if [ ! -z $NOTIFY ]; then                 
+      if [ $? -eq 0 ]
+      then
+        echo "Debian file built succesfully"
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Built '"${package_name}"' '"${package_version}"' debian package for '"${ubuntu_version}"' "}' $SLACK_WEBHOOK_NOTIFICATION
+      else
+        echo "Could not create debian file" >&2
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to build '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' "}' $SLACK_WEBHOOK_NOTIFICATION
+        exit 1
+      fi
    fi
-
 }
 # NOTE: Add here libraries that are included in the package directly and they are not a system dependency (like Qt for the routine generator app)
  
@@ -117,6 +120,18 @@ function parse_arguments()
                OUTPUT_FOLDER="${i#*=}"
                shift # past argument=value
                ;;
+           --send-to-apt)
+               SEND_TO_APT=1
+               shift
+               ;;
+            --notify)
+               NOTIFY=1
+               shift
+               ;;
+            --resolv-depends)
+               RESOLV_DEPENDS=1
+               shift
+               ;;
            --packages=*)
                PACKAGES="${i#*=}"
                shift # past argument=value
@@ -135,7 +150,7 @@ function parse_arguments()
 }
  
 if parse_arguments "$@"; then
-   echo "Usage: $0 [--parallel[=num_threads]] [--packages=package1[:package2...]] --workspace_folder=/path/to/folder --output_folder=/path/to/folder"
+   echo "Usage: $0 [--parallel[=num_threads]] [--packages=package1[:package2...]] --workspace_folder=/path/to/folder --output_folder=/path/to/folder --send-to-apt --notify" 
    exit 1
 fi
  
@@ -152,6 +167,13 @@ mkdir -p $BUILD_PREFIX
  
 cd "${WORKSPACE_FOLDER}"
 WORKSPACE_FOLDER=$(pwd)
+
+if [ ! -z $RESOLV_DEPENDS]; then
+   rosdep install --from-paths ./src --rosdistro "$(rosversion -d)" -y -r --os=ubuntu:"$(lsb_release -c --short)"
+fi
+
+package_version=$(catkin_package_version)
+ubuntu_version=$(lsb_release -d | awk '{print $2,$3,$4}' )
  
 # catkin_make install is run first.
 # This will be used later to generate the binary packages
@@ -190,3 +212,19 @@ for directory in $(get_package_paths $WORKSPACE_FOLDER); do
    mv --force  "$directory"/../*.deb $OUTPUT_FOLDER
    rm --force -R "$directory/debian/"
 done
+
+if [ ! -z $SEND_TO_APT ]; then
+
+   cd "${WORKSPACE_FOLDER}"
+   scp *.deb haru-bot@robotics.upo.es:~/automated_deploy
+   ssh -t haru-bot@robotics.upo.es 'sudo ./add_pkg.sh' 
+   
+   if [ ! -z $NOTIFY ]; then
+      if [ $? -eq 0 ]
+      then
+           curl -X POST -H 'Content-type: application/json' --data '{"text":" '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' added to apt repository"}' $SLACK_WEBHOOK_NOTIFICATION
+      else
+           curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to add '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' to apt repository"}' $SLACK_WEBHOOK_NOTIFICATION
+      fi
+   fi
+fi
