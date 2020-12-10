@@ -12,7 +12,7 @@ if [ "$2" == "master" ]; then
    --output_folder=$(pwd) \
    --packages=$(cat src/$REPO_NAME/package.xml | grep name | sed -E 's/<\/?name>//g' | sed -e 's/^[ \t]*//') \
    --notify \
-   --send-to-apt 
+   --send-to-apt \
    --resolv-depends
 else
    echo "other branch"
@@ -20,7 +20,7 @@ else
    --workspace_folder=$(pwd) \
    --output_folder=$(pwd) \ 
    --packages=$(cat src/$REPO_NAME/package.xml | grep name | sed -E 's/<\/?name>//g' | sed -e 's/^[ \t]*//')  \
-   --notify
+   --notify \
    --resolv-depends
 fi
 
