@@ -168,7 +168,7 @@ mkdir -p $BUILD_PREFIX
 cd "${WORKSPACE_FOLDER}"
 WORKSPACE_FOLDER=$(pwd)
 
-if [ ! -z $RESOLV_DEPENDS]; then
+if [ ! -z $RESOLV_DEPENDS ]; then
    rosdep install --from-paths ./src --rosdistro "$(rosversion -d)" -y -r --os=ubuntu:"$(lsb_release -c --short)"
 fi
 
