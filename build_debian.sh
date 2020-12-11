@@ -2,7 +2,7 @@
 
 REPO_NAME=$1
 cd /home/haru/catkin_ws/src
-git clone https://github.com/robotics-upo/$REPO_NAME
+git clone https://github.com/robotics-upo/$REPO_NAME -b $2
 cd ..
 
 if [ "$2" == "master" ]; then
