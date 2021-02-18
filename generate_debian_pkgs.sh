@@ -44,53 +44,53 @@ function generate_binary_package()
    # Check if the package should be processed (because it's in the list or because)
    # all the packages should be processed
  
-   if [[ -v PACKAGES ]] && ! find_in_list $package_name $PACKAGES; then
+   if [[ -v PACKAGES ]] && ! find_in_list "$package_name $PACKAGES"; then
        echo "$package_name not found in package list. Skipping..."
        return 0
    fi
  
    # It seems the bloom-generate has to be executed in the package folder itself or
    # or in a parent folder (aka, it's not valid to try to generate it from /tmp)
-   cd $directory
+   cd "$directory" 
    local os_release=$(cat /etc/os-release | grep UBUNTU_CODENAME= | sed 's/=/\n/g' | tail -1)
-   bloom-generate rosdebian --os-name ubuntu --os-version $os_release --ros-distro $ROS_DISTRO $directory
+   bloom-generate rosdebian --os-name ubuntu --os-version "$os_release" --ros-distro "$ROS_DISTRO" "$directory"
  
-   add_path_to_rules ${WORKSPACE_FOLDER}/install
+   add_path_to_rules "${WORKSPACE_FOLDER}"/install
    add_commit_to_control
  
    # Replace previous postint scripts if any
    test -f debian/postinst && rm --force debian/postinst
-   test -f $directory/postinst && cp --force $directory/postinst debian/
+   test -f "$directory"/postinst && cp --force "$directory"/postinst debian/
    
    # Replace previous postrm scripts if any
    test -f debian/postrm && rm --force debian/postrm
-   test -f $directory/postrm && cp --force $directory/postrm debian/
+   test -f "$directory"/postrm && cp --force "$directory"/postrm debian/
  
    # Replace previous preinst scripts if any
    test -f debian/preinst && rm --force debian/preinst
-   test -f $directory/preinst && cp --force $directory/preinst debian/
+   test -f "$directory"/preinst && cp --force "$directory"/preinst debian/
  
    # Replace previous prerm scripts if any
    test -f debian/prerm && rm --force debian/prerm
-   test -f $directory/prerm && cp --force $directory/prerm debian/
+   test -f "$directory"/prerm && cp --force "$directory"/prerm debian/
  
    # I didn't manage to pass pamaters to dh by calling the rules script directly, but
    # it seems it's possible to call dh by hand and add the options. The rules script
    # will be executed automatically
    fakeroot dh binary --buildsystem=cmake --parallel \
-                      --sourcedirectory=$directory \
+                      --sourcedirectory="$directory" \
                       --builddirectory="${BUILD_PREFIX}/bloom_build/${package_name}" \
                       --tmpdir="${BUILD_PREFIX}/bloom_tmp/${package_name}" \
                       --dpkg-shlibdeps-params="--ignore-missing-info -l${WORKSPACE_FOLDER}/install/lib/
                           -l${WORKSPACE_FOLDER}/install/lib/${package_name}/lib"
-   if [ ! -z $NOTIFY ]; then                 
+   if [ ! -z "$NOTIFY" ]; then                 
       if [ $? -eq 0 ]
       then
         echo "Debian file built succesfully"
-        curl -X POST -H 'Content-type: application/json' --data '{"text":"Built '"${package_name}"' '"${package_version}"' debian package for '"${ubuntu_version}"' "}' $SLACK_WEBHOOK_NOTIFICATION
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Built '"${package_name}"' '"${package_version}"' debian package for '"${ubuntu_version}"' "}' "$SLACK_WEBHOOK_NOTIFICATION"
       else
         echo "Could not create debian file" >&2
-        curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to build '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' "}' $SLACK_WEBHOOK_NOTIFICATION
+        curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to build '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' "}' "$SLACK_WEBHOOK_NOTIFICATION"
         exit 1
       fi
    fi
@@ -181,8 +181,10 @@ ubuntu_version=$(lsb_release -d | awk '{print $2,$3,$4}' )
 # Run debian package generation in parallel if NUM_THREADS has been provided (requires GNU parallel)
 if [[ -v NUM_THREADS ]]; then
  
-   catkin_make install -j $NUM_THREADS
- 
+   if ! catkin_make install -j "$NUM_THREADS"; then
+      exit 1
+   fi
+   
    # Local functions and vars have to be exported so they can be found by GNU parallel
    export -f generate_binary_package
    export -f add_path_to_rules
@@ -194,22 +196,24 @@ if [[ -v NUM_THREADS ]]; then
    export BUILD_PREFIX
    export PACKAGES
  
-   parallel --jobs $NUM_THREADS --will-cite -u "generate_binary_package {}" ::: $(get_package_paths $WORKSPACE_FOLDER)
+   parallel --jobs "$NUM_THREADS" --will-cite -u "generate_binary_package {}" ::: $(get_package_paths "$WORKSPACE_FOLDER")
  
 else
-   catkin_make install
+   if ! catkin_make install; then  
+      exit 1
+   fi
    # Runs in sequence if parallel has not been set
-   for directory in $(get_package_paths $WORKSPACE_FOLDER); do
-       generate_binary_package $directory
+   for directory in $(get_package_paths "$WORKSPACE_FOLDER"); do
+       generate_binary_package "$directory"
    done
 fi
  
 # Move the generated debs to the output folder
 # and remove the debian/ folder left after
-mkdir -p $OUTPUT_FOLDER
+mkdir -p "$OUTPUT_FOLDER"
  
-for directory in $(get_package_paths $WORKSPACE_FOLDER); do
-   mv --force  "$directory"/../*.deb $OUTPUT_FOLDER
+for directory in $(get_package_paths "$WORKSPACE_FOLDER"); do
+   mv --force  "$directory"/../*.deb "$OUTPUT_FOLDER"
    rm --force -R "$directory/debian/"
 done
 
@@ -219,12 +223,12 @@ if [ ! -z $SEND_TO_APT ]; then
    scp *.deb haru-bot@robotics.upo.es:~/automated_deploy
    ssh -t haru-bot@robotics.upo.es 'sudo ./add_pkg.sh' 
    
-   if [ ! -z $NOTIFY ]; then
+   if [ ! -z "$NOTIFY" ]; then
       if [ $? -eq 0 ]
       then
-           curl -X POST -H 'Content-type: application/json' --data '{"text":" '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' added to apt repository"}' $SLACK_WEBHOOK_NOTIFICATION
+           curl -X POST -H 'Content-type: application/json' --data '{"text":" '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' added to apt repository"}' "$SLACK_WEBHOOK_NOTIFICATION"
       else
-           curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to add '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' to apt repository"}' $SLACK_WEBHOOK_NOTIFICATION
+           curl -X POST -H 'Content-type: application/json' --data '{"text":"Failed to add '"${package_name}"' '"${package_version}"' for '"${ubuntu_version}"' to apt repository"}' "$SLACK_WEBHOOK_NOTIFICATION"
       fi
    fi
 fi
