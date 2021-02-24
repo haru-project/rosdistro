@@ -1,129 +1,129 @@
 actors_simulator:
   ubuntu:
     bionic: [ros-melodic-actors-simulator]
-    noetic: [ros-noetic-actors-simulator]
+    focal: [ros-noetic-actors-simulator]
     xenial: [ros-kinetic-actors-simulator]
 azure_kinect_ros_driver:
   ubuntu:
     bionic: [ros-melodic-azure-kinect-ros-driver]
-    noetic: [ros-noetic-azure-kinect-ros-driver]
+    focal: [ros-noetic-azure-kinect-ros-driver]
 behavior_tree_core:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-core]
-    noetic: [ros-noetic-behavior-tree-core]
+    focal: [ros-noetic-behavior-tree-core]
     xenial: [ros-kinetic-behavior-tree-core]
 behavior_tree_haru:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-haru]
-    noetic: [ros-noetic-behavior-tree-haru]
+    focal: [ros-noetic-behavior-tree-haru]
     xenial: [ros-kinetic-behavior-tree-haru]
 behavior_tree_ros:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-ros]
-    noetic: [ros-noetic-behavior-tree-ros]
+    focal: [ros-noetic-behavior-tree-ros]
     xenial: [ros-kinetic-behavior-tree-ros]
 behavior_tree_strawberry:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-strawberry]
-    noetic: [ros-noetic-behavior-tree-strawberry]
+    focal: [ros-noetic-behavior-tree-strawberry]
     xenial: [ros-kinetic-behavior-tree-strawberry]
 cerevoice_ros:
   ubuntu:
     bionic: [ros-melodic-cerevoice-ros]
-    noetic: [ros-noetic-cerevoice-ros]
+    focal: [ros-noetic-cerevoice-ros]
     xenial: [ros-kinetic-cerevoice-ros]
 ffmpeg:
   ubuntu:
     bionic: [ffmpeg]
-    noetic: [ffmpeg]
+    focal: [ffmpeg]
     xenial: [ffmpeg]
 fkie_message_filters:
   ubuntu:
     bionic: [ros-melodic-fkie-message-filters]
-    noetic: [ros-noetic-fkie-message-filters]
+    focal: [ros-noetic-fkie-message-filters]
     xenial: [ros-kinetic-fkie-message-filters]
 flowdesigner:
   ubuntu: [flowdesigner]
 haru_description:
   ubuntu:
     bionic: [ros-melodic-haru-description]
-    noetic: [ros-noetic-haru-description]
+    focal: [ros-noetic-haru-description]
     xenial: [ros-kinetic-haru-description]
 haru_gazebo:
   ubuntu:
     bionic: [ros-melodic-haru-gazebo]
-    noetic: [ros-noetic-haru-gazebo]
+    focal: [ros-noetic-haru-gazebo]
     xenial: [ros-kinetic-haru-gazebo]
 haru_hanoi_tower_utils:
   ubuntu:
     bionic: [ros-melodic-haru-hanoi-tower-utils]
-    noetic: [ros-noetic-haru-hanoi-tower-utils]
+    focal: [ros-noetic-haru-hanoi-tower-utils]
     xenial: [ros-kinetic-haru-hanoi-tower-utils]
 haru_simulator_examples:
   ubuntu:
     bionic: [ros-melodic-haru-simulator-examples]
-    noetic: [ros-noetic-haru-simulator-examples]
+    focal: [ros-noetic-haru-simulator-examples]
     xenial: [ros-kinetic-haru-simulator-examples]
 haru_utils:
   ubuntu:
     bionic: [ros-melodic-haru-utils]
-    noetic: [ros-noetic-haru-utils]
+    focal: [ros-noetic-haru-utils]
     xenial: [ros-kinetic-haru-utils]
 idmind_tabletop:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop]
-    noetic: [ros-noetic-idmind-tabletop]
+    focal: [ros-noetic-idmind-tabletop]
     xenial: [ros-kinetic-idmind-tabletop]
 idmind_tabletop_driver:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-driver]
-    noetic: [ros-noetic-idmind-tabletop-driver]
+    focal: [ros-noetic-idmind-tabletop-driver]
     xenial: [ros-kinetic-idmind-tabletop-driver]
 idmind_tabletop_image_analyser:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-image-analyser]
-    noetic: [ros-noetic-idmind-tabletop-image-analyser]
+    focal: [ros-noetic-idmind-tabletop-image-analyser]
     xenial: [ros-kinetic-idmind-tabletop-image-analyser]
 idmind_tabletop_lip_sync:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-lip-sync]
-    noetic: [ros-noetic-idmind-tabletop-lip-sync]
+    focal: [ros-noetic-idmind-tabletop-lip-sync]
     xenial: [ros-kinetic-idmind-tabletop-lip-sync]
 idmind_tabletop_msgs:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-msgs]
-    noetic: [ros-noetic-idmind-tabletop-msgs]
+    focal: [ros-noetic-idmind-tabletop-msgs]
     xenial: [ros-kinetic-idmind-tabletop-msgs]
 idmind_tabletop_orbbec:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-orbbec]
-    noetic: [ros-noetic-idmind-tabletop-orbbec]
+    focal: [ros-noetic-idmind-tabletop-orbbec]
     xenial: [ros-kinetic-idmind-tabletop-orbbec]
 idmind_tabletop_telegram_bot:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-telegram-bot]
-    noetic: [ros-noetic-idmind-tabletop-telegram-bot]
+    focal: [ros-noetic-idmind-tabletop-telegram-bot]
     xenial: [ros-kinetic-idmind-tabletop-telegram-bot]
 idmind_tabletop_usb_cam:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-usb-cam]
-    noetic: [ros-noetic-idmind-tabletop-usb-cam]
+    focal: [ros-noetic-idmind-tabletop-usb-cam]
     xenial: [ros-kinetic-idmind-tabletop-usb-cam]
 idmind_tabletop_visualization:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-visualization]
-    noetic: [ros-noetic-idmind-tabletop-visualization]
+    focal: [ros-noetic-idmind-tabletop-visualization]
     xenial: [ros-kinetic-idmind-tabletop-visualization]
 interactive_waypoint_markers:
   ubuntu:
     bionic: [ros-melodic-interactive-waypoint-markers]
-    noetic: [ros-noetic-interactive-waypoint-markers]
+    focal: [ros-noetic-interactive-waypoint-markers]
 libceres-dev:
   ubuntu: [libceres-dev]
 libignition-math2-dev:
   ubuntu:
     bionic: [libignition-math2-dev]
-    noetic: [libignition-math2-dev]
+    focal: [libignition-math2-dev]
     xenial: [libignition-math2-dev]
 libk4a1.3-dev:
   ubuntu: [libk4a1.3-dev]
@@ -144,7 +144,7 @@ libzzvocon:
 nix_common:
   ubuntu:
     bionic: [ros-melodic-nix-common]
-    noetic: [ros-noetic-nix-common]
+    focal: [ros-noetic-nix-common]
 patchelf:
   ubuntu: [patchelf]
 rasp-sample:
@@ -152,77 +152,77 @@ rasp-sample:
 sox:
   ubuntu:
     bionic: [sox]
-    noetic: [sox]
+    focal: [sox]
     xenial: [sox]
 strawberry_ros_asr:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-asr]
-    noetic: [ros-noetic-strawberry-ros-asr]
+    focal: [ros-noetic-strawberry-ros-asr]
     xenial: [ros-kinetic-strawberry-ros-asr]
 strawberry_ros_azure_kinect:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-azure-kinect]
-    noetic: [ros-noetic-strawberry-ros-azure-kinect]
+    focal: [ros-noetic-strawberry-ros-azure-kinect]
 strawberry_ros_dialog:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-dialog]
-    noetic: [ros-noetic-strawberry-ros-dialog]
+    focal: [ros-noetic-strawberry-ros-dialog]
     xenial: [ros-kinetic-strawberry-ros-dialog]
 strawberry_ros_faces:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-faces]
-    noetic: [ros-noetic-strawberry-ros-faces]
+    focal: [ros-noetic-strawberry-ros-faces]
     xenial: [ros-kinetic-strawberry-ros-faces]
 strawberry_ros_haru:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-haru]
-    noetic: [ros-noetic-strawberry-ros-haru]
+    focal: [ros-noetic-strawberry-ros-haru]
     xenial: [ros-kinetic-strawberry-ros-haru]
 strawberry_ros_launch:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-launch]
-    noetic: [ros-noetic-strawberry-ros-launch]
+    focal: [ros-noetic-strawberry-ros-launch]
     xenial: [ros-kinetic-strawberry-ros-launch]
 strawberry_ros_msgs:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-msgs]
-    noetic: [ros-noetic-strawberry-ros-msgs]
+    focal: [ros-noetic-strawberry-ros-msgs]
     xenial: [ros-kinetic-strawberry-ros-msgs]
 strawberry_ros_people:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-people]
-    noetic: [ros-noetic-strawberry-ros-people]
+    focal: [ros-noetic-strawberry-ros-people]
     xenial: [ros-kinetic-strawberry-ros-people]
 strawberry_ros_tf:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-tf]
-    noetic: [ros-noetic-strawberry-ros-tf]
+    focal: [ros-noetic-strawberry-ros-tf]
     xenial: [ros-kinetic-strawberry-ros-tf]
 strawberry_ros_visualization:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-visualization]
-    noetic: [ros-noetic-strawberry-ros-visualization]
+    focal: [ros-noetic-strawberry-ros-visualization]
     xenial: [ros-kinetic-strawberry-ros-visualization]
 strawberry_ros_zz:
   ubuntu:
     bionic: [ros-melodic-strawberry-ros-zz]
-    noetic: [ros-noetic-strawberry-ros-zz]
+    focal: [ros-noetic-strawberry-ros-zz]
     xenial: [ros-kinetic-strawberry-ros-zz]
 upo_markers:
   ubuntu:
     bionic: [ros-melodic-upo-markers]
-    noetic: [ros-noetic-upo-markers ]
+    focal: [ros-noetic-upo-markers ]
 zz-weka-svm:
   ubuntu: [zz-weka-svm]
 zz_msgs:
   ubuntu:
     bionic: [ros-melodic-zz-msgs]
-    noetic: [ros-noetic-zz-msgs]
+    focal: [ros-noetic-zz-msgs]
     xenial: [ros-kinetic-zz-msgs]
 zz_params:
   ubuntu:
     bionic: [ros-melodic-zz-params]
-    noetic: [ros-noetic-zz-params]
+    focal: [ros-noetic-zz-params]
     xenial: [ros-kinetic-zz-params]
 zzcuda:
   ubuntu: [zzcuda]
