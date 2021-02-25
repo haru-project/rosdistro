@@ -44,7 +44,7 @@ function generate_binary_package()
    # Check if the package should be processed (because it's in the list or because)
    # all the packages should be processed
  
-   if [[ -v PACKAGES ]] && ! find_in_list "$package_name $PACKAGES"; then
+   if [[ -v PACKAGES ]] && ! find_in_list "$package_name" "$PACKAGES"; then
        echo "$package_name not found in package list. Skipping..."
        return 0
    fi
