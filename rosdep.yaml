@@ -37,6 +37,11 @@ ffmpeg:
     bionic: [ffmpeg]
     focal: [ffmpeg]
     xenial: [ffmpeg]
+google-asr-cpp:
+  ubuntu:
+    bionic: [google-asr-cpp]
+    focal:  [google-asr-cpp]
+    xenial: [google-asr-cpp]
 fkie_message_filters:
   ubuntu:
     bionic: [ros-melodic-fkie-message-filters]
