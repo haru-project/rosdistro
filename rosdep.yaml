@@ -218,6 +218,11 @@ tf:
     bionic: [ros-melodic-tf]
     focal: [ros-noetic-tf]
     xenial: [ros-kinetic-tf]
+rospy:
+  ubuntu:
+    bionic: [ros-melodic-rospy]
+    focal: [ros-noetic-rospy]
+    xenial: [ros-kinetic-rospy]
 upo_markers:
   ubuntu:
     bionic: [ros-melodic-upo-markers]
