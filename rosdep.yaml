@@ -223,12 +223,12 @@ upo_markers:
   ubuntu:
     bionic: [ros-melodic-upo-markers]
     focal: [ros-noetic-upo-markers ]
+
 gcc_7:
-  ubuntu:
-    focal: [gcc-7]
+  ubuntu: [gcc-7]
+      
 g++_7:
-  ubuntu:
-    focal: [g++-7]
+  ubuntu: [g++-7]
 
 zz-weka-svm:
   ubuntu: [zz-weka-svm]
