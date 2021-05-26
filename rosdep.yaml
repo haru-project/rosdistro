@@ -218,6 +218,11 @@ web_video_server:
     bionic: [ros-melodic-web-video-server]
     focal:   [ros-noetic-web-video-server]
     xenial: [ros-kinetic-web-video-server]
+libssh:
+  ubuntu:
+    bionic: [libssh-dev]
+    focal:  [libssh-dev]
+    xenial: [libssh-dev]
 
 upo_markers:
   ubuntu:
