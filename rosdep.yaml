@@ -231,7 +231,7 @@ upo_markers:
 zz_depends:
   ubuntu:
     bionic: [ros-melodic-zz-depends]
-    zenial: [ros-kinetic-zz-depends]
+    xenial: [ros-kinetic-zz-depends]
     focal: [ros-noetic-zz-depends]
 gcc_7:
   ubuntu: [gcc-7]
