@@ -160,6 +160,13 @@ if [ ! -f "${WORKSPACE_FOLDER}/.catkin_workspace" ]; then
    exit 1
 fi
  
+# This is a workaround to allow the workflow generate the debain package in focal with gcc7 compiler....
+if [ "$PACKAGES" = "strawberry_ros_zz" ] && [ "$(lsb_release -cs)" = "focal" ]; then
+
+   update-alternatives --set gcc /usr/bin/gcc-7
+   update-alternatives --set g++ /usr/bin/g++-7
+fi
+
 # Delete any previous compilation
 BUILD_PREFIX=/tmp/bloom_debian
 rm --force -R $BUILD_PREFIX
