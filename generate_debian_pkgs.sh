@@ -224,6 +224,17 @@ for directory in $(get_package_paths "$WORKSPACE_FOLDER"); do
    rm --force -R "$directory/debian/"
 done
 
+if [ "$PACKAGES" = "strawberry_ros_zz" ];then
+
+   cd "$OUTPUT_FOLDER"
+   mkdir temp_zz
+   dpkg-deb -R ros-"$ROS_DISTRO"-strawberry-ros-zz_* temp_zz/
+   rm ros-"$ROS_DISTRO"-strawberry-ros-zz_*
+   sed -i 's/flowdesigner,//g' temp_zz/DEBIAN/control 
+   version=$(cat temp_zz/DEBIAN/control | grep Version | cut -d ":" -f2 | sed 's/^ *//g')
+   dpkg-deb -b temp_zz/ ros-"$ROS_DISTRO"-strawberry-ros-zz_"$version"_amd64.deb
+   rm -rf temp_zz/
+fi 
 if [ ! -z $SEND_TO_APT ]; then
 
    cd "${WORKSPACE_FOLDER}"
