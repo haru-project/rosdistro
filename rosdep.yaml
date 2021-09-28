@@ -267,3 +267,23 @@ zztools:
   ubuntu: [zztools]
 zzvocon:
   ubuntu: [zzvocon]
+
+libk4abt1.1-dev:
+  ubuntu: 
+    focal: [libk4abt1.1-dev]
+
+libk4abt1.1:
+  ubuntu: 
+    focal: [libk4abt1.1]
+
+libk4a1.4-dev:
+  ubuntu: 
+    focal: [libk4a1.4-dev]
+
+libk4a1.4:
+  ubuntu: 
+    focal: [libk4a1.4]
+
+k4a-tools:
+  ubuntu: 
+    focal: [k4a-tools]
