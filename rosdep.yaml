@@ -74,6 +74,11 @@ haru_utils:
     bionic: [ros-melodic-haru-utils]
     focal: [ros-noetic-haru-utils]
     xenial: [ros-kinetic-haru-utils]
+
+haru_encouraging_mediator_msgs:
+  ubuntu:
+    focal: [ros-noetic-haru-encouraging-mediator-msgs]
+
 idmind_tabletop:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop]
