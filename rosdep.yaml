@@ -79,6 +79,10 @@ haru_encouraging_mediator_msgs:
   ubuntu:
     focal: [ros-noetic-haru-encouraging-mediator-msgs]
 
+haru_ipad_action_server:
+  ubuntu:
+    focal: [ros-noetic-haru-ipad-action-server]
+
 idmind_tabletop:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop]
