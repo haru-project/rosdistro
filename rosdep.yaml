@@ -296,3 +296,7 @@ libk4a1.4:
 k4a-tools:
   ubuntu: 
     focal: [k4a-tools]
+
+ros_tcp_endpoint:
+  ubuntu:
+    focal: [ros-noetic-ros-tcp-endpoint]
