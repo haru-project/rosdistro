@@ -304,3 +304,7 @@ ros_tcp_endpoint:
 leap_sdk:
   ubuntu:
     focal: [leap]
+    
+strawberry_ros_leap_motion:
+  ubuntu:
+    focal: [ros-noetic-strawberry-ros-leap-motion]
