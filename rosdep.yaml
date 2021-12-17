@@ -222,6 +222,21 @@ strawberry_ros_zz:
     bionic: [ros-melodic-strawberry-ros-zz]
     focal: [ros-noetic-strawberry-ros-zz]
     xenial: [ros-kinetic-strawberry-ros-zz]
+strawberry_ros_weather:
+  ubuntu:
+    bionic: [ros-melodic-strawberry-ros-weather]
+    focal: [ros-noetic-strawberry-ros-weather]
+    xenial: [ros-kinetic-strawberry-ros-weather]
+strawberry_ros_transport:
+  ubuntu:
+    bionic: [ros-melodic-strawberry-ros-transport]
+    focal: [ros-noetic-strawberry-ros-transport]
+    xenial: [ros-kinetic-strawberry-ros-transport]
+strawberry_ros_news:
+  ubuntu:
+    bionic: [ros-melodic-strawberry-ros-news]
+    focal: [ros-noetic-strawberry-ros-news]
+    xenial: [ros-kinetic-strawberry-ros-news]
 web_video_server:
   ubuntu:
     bionic: [ros-melodic-web-video-server]
