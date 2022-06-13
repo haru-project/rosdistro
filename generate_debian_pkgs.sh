@@ -12,7 +12,7 @@ function add_path_to_rules()
    # debian generator was able to compile it. I was not able to pass the flag using dh
    # so I had to modify the rules file that gets generated and append the path
    # at the end of the line...
-   sed -i "/CMAKE_PREFIX_PATH=*\"/ s#.\$#;$1\"#" debian/rules
+   sed -i "s+CMAKE_PREFIX_PATH=\"+CMAKE_PREFIX_PATH=\"$1;+g" debian/rules
 }
  
 function get_current_commit()
