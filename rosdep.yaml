@@ -323,3 +323,7 @@ leap_sdk:
 strawberry_ros_leap_motion:
   ubuntu:
     focal: [ros-noetic-strawberry-ros-leap-motion]
+    
+haru_smalltalk_utils:
+  ubuntu:
+    focal: [ros-noetic-haru-smalltalk-utils]
