@@ -327,3 +327,7 @@ strawberry_ros_leap_motion:
 haru_smalltalk_utils:
   ubuntu:
     focal: [ros-noetic-haru-smalltalk-utils]
+   
+haru_unity:
+  ubuntu:
+    focal: [ros-noetic-haru-unity]
