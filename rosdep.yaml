@@ -331,3 +331,7 @@ haru_smalltalk_utils:
 haru_unity:
   ubuntu:
     focal: [ros-noetic-haru-unity]
+    
+haru_projector:
+  ubuntu:
+    focal: [ros-noetic-haru-projector]
