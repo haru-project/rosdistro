@@ -339,3 +339,7 @@ haru_projector:
 strawberry_ros_hands:
   ubuntu:
     focal: [ros-noetic-strawberry-ros-hands]
+    
+haru_nlp_ros:
+  ubuntu:
+    focal: [ros-noetic-haru-nlp-ros]
