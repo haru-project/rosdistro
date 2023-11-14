@@ -343,3 +343,7 @@ strawberry_ros_hands:
 haru_nlp_ros:
   ubuntu:
     focal: [ros-noetic-haru-nlp-ros]
+
+haru_photo_activity:
+  ubuntu:
+    focal: [ros-noetic-haru-photo-activity]
