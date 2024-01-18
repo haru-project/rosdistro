@@ -12,6 +12,11 @@ behavior_tree_core:
     bionic: [ros-melodic-behavior-tree-core]
     focal: [ros-noetic-behavior-tree-core]
     xenial: [ros-kinetic-behavior-tree-core]
+behavior_tree_cpp:
+  ubuntu:
+    bionic: [ros-melodic-behavior-tree-cpp]
+    focal: [ros-noetic-behavior-tree-cpp]
+    xenial: [ros-kinetic-behavior-tree-cpp]
 behavior_tree_haru:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-haru]
