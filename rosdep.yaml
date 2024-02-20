@@ -356,3 +356,15 @@ haru_nlp_ros:
 haru_photo_activity:
   ubuntu:
     focal: [ros-noetic-haru-photo-activity]
+
+python3.10:
+  ubuntu:
+    focal: [python3.10]
+
+python3.10-dev:
+  ubuntu:
+    focal: [python3.10-dev]
+
+python3.10-venv:
+  ubuntu:
+    focal: [python3.10-venv]
