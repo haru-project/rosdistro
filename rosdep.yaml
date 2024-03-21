@@ -7,11 +7,6 @@ azure_kinect_ros_driver:
   ubuntu:
     bionic: [ros-melodic-azure-kinect-ros-driver]
     focal: [ros-noetic-azure-kinect-ros-driver]
-behavior_tree_core:
-  ubuntu:
-    bionic: [ros-melodic-behavior-tree-core]
-    focal: [ros-noetic-behavior-tree-core]
-    xenial: [ros-kinetic-behavior-tree-core]
 behavior_tree_cpp:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-cpp]
@@ -27,6 +22,9 @@ behavior_tree_ros:
     bionic: [ros-melodic-behavior-tree-ros]
     focal: [ros-noetic-behavior-tree-ros]
     xenial: [ros-kinetic-behavior-tree-ros]
+behavior_tre_plugins:
+  ubuntu:
+    focal: [ros-noetic-behavior-tree-pl]
 behavior_tree_strawberry:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-strawberry]
