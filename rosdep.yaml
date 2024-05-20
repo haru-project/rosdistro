@@ -1,3 +1,5 @@
+# This file is used to define the dependencies of the packages in the repository.
+
 # Haru related packages
 haru_hanoi_tower_utils:
   ubuntu:
@@ -29,6 +31,16 @@ haru_projector:
     xenial: [ros-kinetic-haru-projector]
     bionic: [ros-melodic-haru-projector]
     focal: [ros-noetic-haru-projector]
+haru_nlp_ros:
+  ubuntu:
+    xenial: [ros-kinetic-haru-nlp-ros]
+    bionic: [ros-melodic-haru-nlp-ros]
+    focal: [ros-noetic-haru-nlp-ros]
+haru_photo_activity:
+  ubuntu:
+    xenial: [ros-kinetic-haru-photo-activity]
+    bionic: [ros-melodic-haru-photo-activity]
+    focal: [ros-noetic-haru-photo-activity]
 
 # Msgs 
 strawberry_ros_msgs:
@@ -187,6 +199,16 @@ behavior_tree_strawberry:
     xenial: [ros-kinetic-behavior-tree-strawberry]
     bionic: [ros-melodic-behavior-tree-strawberry]
     focal: [ros-noetic-behavior-tree-strawberry]
+behavior_tree_cpp:
+  ubuntu:
+    bionic: [ros-melodic-behavior-tree-cpp]
+    focal: [ros-noetic-behavior-tree-cpp]
+    xenial: [ros-kinetic-behavior-tree-cpp]
+behavior_tree_haru:
+  ubuntu:
+    bionic: [ros-melodic-behavior-tree-haru]
+    focal: [ros-noetic-behavior-tree-haru]
+    xenial: [ros-kinetic-behavior-tree-haru]
 
 # Sensors
 azure_kinect_ros_driver:
@@ -326,4 +348,14 @@ gcc_7:
 g++_7:
   ubuntu: [g++-7]
 leap_sdk:
-  ubuntu: [leap]
+  ubuntu:
+    focal: [leap]
+python3.10:
+  ubuntu:
+    focal: [python3.10]
+python3.10-dev:
+  ubuntu:
+    focal: [python3.10-dev]
+python3.10-venv:
+  ubuntu:
+    focal: [python3.10-venv]
