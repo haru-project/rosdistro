@@ -1,12 +1,204 @@
-actors_simulator:
+# This file is used to define the dependencies of the packages in the repository.
+
+# Haru related packages
+haru_hanoi_tower_utils:
   ubuntu:
-    bionic: [ros-melodic-actors-simulator]
-    focal: [ros-noetic-actors-simulator]
-    xenial: [ros-kinetic-actors-simulator]
-azure_kinect_ros_driver:
+    bionic: [ros-melodic-haru-hanoi-tower-utils]
+    focal: [ros-noetic-haru-hanoi-tower-utils]
+    xenial: [ros-kinetic-haru-hanoi-tower-utils]
+haru_utils:
   ubuntu:
-    bionic: [ros-melodic-azure-kinect-ros-driver]
-    focal: [ros-noetic-azure-kinect-ros-driver]
+    bionic: [ros-melodic-haru-utils]
+    focal: [ros-noetic-haru-utils]
+    xenial: [ros-kinetic-haru-utils]
+haru_ipad_action_server:
+  ubuntu:
+    xenial: [ros-kinetic-haru-ipad-action-server]
+    bionic: [ros-melodic-haru-ipad-action-server]
+    focal: [ros-noetic-haru-ipad-action-server]
+haru_smalltalk_utils:
+  ubuntu:
+    xenial: [ros-kinetic-haru-smalltalk-utils]
+    bionic: [ros-melodic-haru-smalltalk-utils]
+    focal: [ros-noetic-haru-smalltalk-utils]
+haru_unity:
+  ubuntu:
+    xenial: [ros-kinetic-haru-unity]
+    bionic: [ros-melodic-haru-unity]
+    focal: [ros-noetic-haru-unity]
+haru_projector:
+  ubuntu:
+    xenial: [ros-kinetic-haru-projector]
+    bionic: [ros-melodic-haru-projector]
+    focal: [ros-noetic-haru-projector]
+haru_nlp_ros:
+  ubuntu:
+    xenial: [ros-kinetic-haru-nlp-ros]
+    bionic: [ros-melodic-haru-nlp-ros]
+    focal: [ros-noetic-haru-nlp-ros]
+haru_photo_activity:
+  ubuntu:
+    xenial: [ros-kinetic-haru-photo-activity]
+    bionic: [ros-melodic-haru-photo-activity]
+    focal: [ros-noetic-haru-photo-activity]
+
+# Msgs 
+strawberry_ros_msgs:
+  ubuntu:
+    bionic: [ros-melodic-strawberry-ros-msgs]
+    focal: [ros-noetic-strawberry-ros-msgs]
+    xenial: [ros-kinetic-strawberry-ros-msgs]
+idmind_tabletop_msgs:
+  ubuntu:
+    bionic: [ros-melodic-idmind-tabletop-msgs]
+    focal: [ros-noetic-idmind-tabletop-msgs]
+    xenial: [ros-kinetic-idmind-tabletop-msgs]
+haru_encouraging_mediator_msgs:
+  ubuntu:
+    xenial: [ros-kinetic-haru-encouraging-mediator-msgs]
+    bionic: [ros-melodic-haru-encouraging-mediator-msgs]
+    focal: [ros-noetic-haru-encouraging-mediator-msgs]
+
+# Strawberry
+strawberry_ros_asr:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-asr]
+    bionic: [ros-melodic-strawberry-ros-asr]
+    focal: [ros-noetic-strawberry-ros-asr]
+strawberry_ros_azure_kinect:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-azure-kinect]
+    bionic: [ros-melodic-strawberry-ros-azure-kinect]
+    focal: [ros-noetic-strawberry-ros-azure-kinect]
+strawberry_ros_dialog:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-dialog]
+    bionic: [ros-melodic-strawberry-ros-dialog]
+    focal: [ros-noetic-strawberry-ros-dialog]
+strawberry_ros_faces:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-faces]
+    bionic: [ros-melodic-strawberry-ros-faces]
+    focal: [ros-noetic-strawberry-ros-faces]
+strawberry_ros_haru:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-haru]
+    bionic: [ros-melodic-strawberry-ros-haru]
+    focal: [ros-noetic-strawberry-ros-haru]
+strawberry_ros_launch:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-launch]
+    bionic: [ros-melodic-strawberry-ros-launch]
+    focal: [ros-noetic-strawberry-ros-launch]
+strawberry_ros_people:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-people]
+    bionic: [ros-melodic-strawberry-ros-people]
+    focal: [ros-noetic-strawberry-ros-people]
+strawberry_ros_tf:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-tf]
+    bionic: [ros-melodic-strawberry-ros-tf]
+    focal: [ros-noetic-strawberry-ros-tf]
+strawberry_ros_visualization:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-visualization]
+    bionic: [ros-melodic-strawberry-ros-visualization]
+    focal: [ros-noetic-strawberry-ros-visualization]
+strawberry_ros_zz:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-zz]
+    bionic: [ros-melodic-strawberry-ros-zz]
+    focal: [ros-noetic-strawberry-ros-zz]
+strawberry_ros_weather:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-weather]
+    bionic: [ros-melodic-strawberry-ros-weather]
+    focal: [ros-noetic-strawberry-ros-weather]
+strawberry_ros_transport:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-transport]
+    bionic: [ros-melodic-strawberry-ros-transport]
+    focal: [ros-noetic-strawberry-ros-transport]
+strawberry_ros_news:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-news]
+    bionic: [ros-melodic-strawberry-ros-news]
+    focal: [ros-noetic-strawberry-ros-news]
+strawberry_ros_leap_motion:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-leap-motion]
+    bionic: [ros-melodic-strawberry-ros-leap-motion]
+    focal: [ros-noetic-strawberry-ros-leap-motion]
+strawberry_ros_hands:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-hands]
+    bionic: [ros-melodic-strawberry-ros-hands]
+    focal: [ros-noetic-strawberry-ros-hands]
+strawberry_ros_projector:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-projector]
+    bionic: [ros-melodic-strawberry-ros-projector]
+    focal: [ros-noetic-strawberry-ros-projector]
+
+# ID-Mind Tabletop
+idmind_tabletop:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop]
+    bionic: [ros-melodic-idmind-tabletop]
+    focal: [ros-noetic-idmind-tabletop]
+idmind_tabletop_driver:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-driver]
+    bionic: [ros-melodic-idmind-tabletop-driver]
+    focal: [ros-noetic-idmind-tabletop-driver]
+idmind_tabletop_image_analyser:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-image-analyser]
+    bionic: [ros-melodic-idmind-tabletop-image-analyser]
+    focal: [ros-noetic-idmind-tabletop-image-analyser]
+idmind_tabletop_lip_sync:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-lip-sync]
+    bionic: [ros-melodic-idmind-tabletop-lip-sync]
+    focal: [ros-noetic-idmind-tabletop-lip-sync]
+idmind_tabletop_orbbec:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-orbbec]
+    bionic: [ros-melodic-idmind-tabletop-orbbec]
+    focal: [ros-noetic-idmind-tabletop-orbbec]
+idmind_tabletop_telegram_bot:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-telegram-bot]
+    bionic: [ros-melodic-idmind-tabletop-telegram-bot]
+    focal: [ros-noetic-idmind-tabletop-telegram-bot]
+idmind_tabletop_usb_cam:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-usb-cam]
+    bionic: [ros-melodic-idmind-tabletop-usb-cam]
+    focal: [ros-noetic-idmind-tabletop-usb-cam]
+idmind_tabletop_visualization:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-visualization]
+    bionic: [ros-melodic-idmind-tabletop-visualization]
+    focal: [ros-noetic-idmind-tabletop-visualization]
+
+# Behavior Tree
+behavior_tree_core:
+  ubuntu:
+    xenial: [ros-kinetic-behavior-tree-core]
+    bionic: [ros-melodic-behavior-tree-core]
+    focal: [ros-noetic-behavior-tree-core]
+behavior_tree_ros:
+  ubuntu:
+    xenial: [ros-kinetic-behavior-tree-ros]
+    bionic: [ros-melodic-behavior-tree-ros]
+    focal: [ros-noetic-behavior-tree-ros]
+behavior_tree_strawberry:
+  ubuntu:
+    xenial: [ros-kinetic-behavior-tree-strawberry]
+    bionic: [ros-melodic-behavior-tree-strawberry]
+    focal: [ros-noetic-behavior-tree-strawberry]
 behavior_tree_cpp:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-cpp]
@@ -17,131 +209,98 @@ behavior_tree_haru:
     bionic: [ros-melodic-behavior-tree-haru]
     focal: [ros-noetic-behavior-tree-haru]
     xenial: [ros-kinetic-behavior-tree-haru]
-behavior_tree_ros:
+
+# Sensors
+azure_kinect_ros_driver:
   ubuntu:
-    bionic: [ros-melodic-behavior-tree-ros]
-    focal: [ros-noetic-behavior-tree-ros]
-    xenial: [ros-kinetic-behavior-tree-ros]
-behavior_tre_plugins:
-  ubuntu:
-    focal: [ros-noetic-behavior-tree-pl]
-behavior_tree_strawberry:
-  ubuntu:
-    bionic: [ros-melodic-behavior-tree-strawberry]
-    focal: [ros-noetic-behavior-tree-strawberry]
-    xenial: [ros-kinetic-behavior-tree-strawberry]
+    xenial: [ros-kinetic-azure-kinect-ros-driver]
+    bionic: [ros-melodic-azure-kinect-ros-driver]
+    focal: [ros-noetic-azure-kinect-ros-driver]
+libk4abt1.1-dev:
+  ubuntu: [libk4abt1.1-dev]
+libk4abt1.1:
+  ubuntu: [libk4abt1.1]
+libk4a1.4-dev:
+  ubuntu: [libk4a1.4-dev]
+libk4a1.4:
+  ubuntu: [libk4a1.4]
+k4a-tools:
+  ubuntu: [k4a-tools]
+
+# TTS
 cerevoice_ros:
   ubuntu:
+    xenial: [ros-kinetic-cerevoice-ros]
     bionic: [ros-melodic-cerevoice-ros]
     focal: [ros-noetic-cerevoice-ros]
-    xenial: [ros-kinetic-cerevoice-ros]
-ffmpeg:
-  ubuntu:
-    bionic: [ffmpeg]
-    focal: [ffmpeg]
-    xenial: [ffmpeg]
-google-asr-cpp:
-  ubuntu:
-    bionic: [google-asr-cpp]
-    focal:  [google-asr-cpp]
-    xenial: [google-asr-cpp]
-fkie_message_filters:
-  ubuntu:
-    bionic: [ros-melodic-fkie-message-filters]
-    focal: [ros-noetic-fkie-message-filters]
-    xenial: [ros-kinetic-fkie-message-filters]
-flowdesigner:
-  ubuntu: [flowdesigner]
+
+# Simulator & Visualization
+# This package has some useful tools for working with Actors in Gazebo simulations
 haru_description:
   ubuntu:
+    xenial: [ros-kinetic-haru-description]
     bionic: [ros-melodic-haru-description]
     focal: [ros-noetic-haru-description]
-    xenial: [ros-kinetic-haru-description]
 haru_gazebo:
   ubuntu:
+    xenial: [ros-kinetic-haru-gazebo]
     bionic: [ros-melodic-haru-gazebo]
     focal: [ros-noetic-haru-gazebo]
-    xenial: [ros-kinetic-haru-gazebo]
-haru_hanoi_tower_utils:
-  ubuntu:
-    bionic: [ros-melodic-haru-hanoi-tower-utils]
-    focal: [ros-noetic-haru-hanoi-tower-utils]
-    xenial: [ros-kinetic-haru-hanoi-tower-utils]
 haru_simulator_examples:
   ubuntu:
+    xenial: [ros-kinetic-haru-simulator-examples]
     bionic: [ros-melodic-haru-simulator-examples]
     focal: [ros-noetic-haru-simulator-examples]
-    xenial: [ros-kinetic-haru-simulator-examples]
-haru_utils:
-  ubuntu:
-    bionic: [ros-melodic-haru-utils]
-    focal: [ros-noetic-haru-utils]
-    xenial: [ros-kinetic-haru-utils]
 
-haru_encouraging_mediator_msgs:
+# Other dependencies not maintained by haru-project but required by Haru
+# ROS dependencies
+actors_simulator:
   ubuntu:
-    focal: [ros-noetic-haru-encouraging-mediator-msgs]
+    xenial: [ros-kinetic-actors-simulator]
+    bionic: [ros-melodic-actors-simulator]
+    focal: [ros-noetic-actors-simulator]
+ros_tcp_endpoint:
+  ubuntu:
+    xenial: [ros-kinetic-ros-tcp-endpoint]
+    bionic: [ros-melodic-ros-tcp-endpoint]
+    focal: [ros-noetic-ros-tcp-endpoint]
+fkie_message_filters:
+  ubuntu:
+    xenial: [ros-kinetic-fkie-message-filters]
+    bionic: [ros-melodic-fkie-message-filters]
+    focal: [ros-noetic-fkie-message-filters]
+web_video_server:
+  ubuntu:
+    xenial: [ros-kinetic-web-video-server]
+    bionic: [ros-melodic-web-video-server]
+    focal:   [ros-noetic-web-video-server]
+zz_msgs:
+  ubuntu:
+    xenial: [ros-kinetic-zz-msgs]
+    bionic: [ros-melodic-zz-msgs]
+    focal: [ros-noetic-zz-msgs]
+zz_params:
+  ubuntu:
+    xenial: [ros-kinetic-zz-params]
+    bionic: [ros-melodic-zz-params]
+    focal: [ros-noetic-zz-params]
+zz_depends:
+  ubuntu:
+    xenial: [ros-kinetic-zz-depends]
+    bionic: [ros-melodic-zz-depends]
+    focal: [ros-noetic-zz-depends]
 
-haru_ipad_action_server:
-  ubuntu:
-    focal: [ros-noetic-haru-ipad-action-server]
-
-idmind_tabletop:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop]
-    focal: [ros-noetic-idmind-tabletop]
-    xenial: [ros-kinetic-idmind-tabletop]
-idmind_tabletop_driver:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-driver]
-    focal: [ros-noetic-idmind-tabletop-driver]
-    xenial: [ros-kinetic-idmind-tabletop-driver]
-idmind_tabletop_image_analyser:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-image-analyser]
-    focal: [ros-noetic-idmind-tabletop-image-analyser]
-    xenial: [ros-kinetic-idmind-tabletop-image-analyser]
-idmind_tabletop_lip_sync:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-lip-sync]
-    focal: [ros-noetic-idmind-tabletop-lip-sync]
-    xenial: [ros-kinetic-idmind-tabletop-lip-sync]
-idmind_tabletop_msgs:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-msgs]
-    focal: [ros-noetic-idmind-tabletop-msgs]
-    xenial: [ros-kinetic-idmind-tabletop-msgs]
-idmind_tabletop_orbbec:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-orbbec]
-    focal: [ros-noetic-idmind-tabletop-orbbec]
-    xenial: [ros-kinetic-idmind-tabletop-orbbec]
-idmind_tabletop_telegram_bot:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-telegram-bot]
-    focal: [ros-noetic-idmind-tabletop-telegram-bot]
-    xenial: [ros-kinetic-idmind-tabletop-telegram-bot]
-idmind_tabletop_usb_cam:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-usb-cam]
-    focal: [ros-noetic-idmind-tabletop-usb-cam]
-    xenial: [ros-kinetic-idmind-tabletop-usb-cam]
-idmind_tabletop_visualization:
-  ubuntu:
-    bionic: [ros-melodic-idmind-tabletop-visualization]
-    focal: [ros-noetic-idmind-tabletop-visualization]
-    xenial: [ros-kinetic-idmind-tabletop-visualization]
-interactive_waypoint_markers:
-  ubuntu:
-    bionic: [ros-melodic-interactive-waypoint-markers]
-    focal: [ros-noetic-interactive-waypoint-markers]
+# Non-ROS dependencies
+ffmpeg:
+  ubuntu: [ffmpeg]
+google-asr-cpp:
+  ubuntu: [google-asr-cpp]
+flowdesigner:
+  ubuntu: [flowdesigner]
 libceres-dev:
   ubuntu: [libceres-dev]
 libignition-math2-dev:
-  ubuntu:
-    bionic: [libignition-math2-dev]
-    focal: [libignition-math2-dev]
-    xenial: [libignition-math2-dev]
+  ubuntu: [libignition-math2-dev]
 libk4a1.3-dev:
   ubuntu: [libk4a1.3-dev]
 libk4abt1.0-dev:
@@ -158,126 +317,16 @@ libzzio:
   ubuntu: [libzzio]
 libzzvocon:
   ubuntu: [libzzvocon]
-nix_common:
-  ubuntu:
-    bionic: [ros-melodic-nix-common]
-    focal: [ros-noetic-nix-common]
 patchelf:
   ubuntu: [patchelf]
 rasp-sample:
   ubuntu: [rasp-sample]
 sox:
-  ubuntu:
-    bionic: [sox]
-    focal: [sox]
-    xenial: [sox]
-strawberry_ros_asr:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-asr]
-    focal: [ros-noetic-strawberry-ros-asr]
-    xenial: [ros-kinetic-strawberry-ros-asr]
-strawberry_ros_azure_kinect:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-azure-kinect]
-    focal: [ros-noetic-strawberry-ros-azure-kinect]
-strawberry_ros_dialog:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-dialog]
-    focal: [ros-noetic-strawberry-ros-dialog]
-    xenial: [ros-kinetic-strawberry-ros-dialog]
-strawberry_ros_faces:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-faces]
-    focal: [ros-noetic-strawberry-ros-faces]
-    xenial: [ros-kinetic-strawberry-ros-faces]
-strawberry_ros_haru:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-haru]
-    focal: [ros-noetic-strawberry-ros-haru]
-    xenial: [ros-kinetic-strawberry-ros-haru]
-strawberry_ros_launch:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-launch]
-    focal: [ros-noetic-strawberry-ros-launch]
-    xenial: [ros-kinetic-strawberry-ros-launch]
-strawberry_ros_msgs:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-msgs]
-    focal: [ros-noetic-strawberry-ros-msgs]
-    xenial: [ros-kinetic-strawberry-ros-msgs]
-strawberry_ros_people:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-people]
-    focal: [ros-noetic-strawberry-ros-people]
-    xenial: [ros-kinetic-strawberry-ros-people]
-strawberry_ros_tf:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-tf]
-    focal: [ros-noetic-strawberry-ros-tf]
-    xenial: [ros-kinetic-strawberry-ros-tf]
-strawberry_ros_visualization:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-visualization]
-    focal: [ros-noetic-strawberry-ros-visualization]
-    xenial: [ros-kinetic-strawberry-ros-visualization]
-strawberry_ros_zz:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-zz]
-    focal: [ros-noetic-strawberry-ros-zz]
-    xenial: [ros-kinetic-strawberry-ros-zz]
-strawberry_ros_weather:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-weather]
-    focal: [ros-noetic-strawberry-ros-weather]
-    xenial: [ros-kinetic-strawberry-ros-weather]
-strawberry_ros_transport:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-transport]
-    focal: [ros-noetic-strawberry-ros-transport]
-    xenial: [ros-kinetic-strawberry-ros-transport]
-strawberry_ros_news:
-  ubuntu:
-    bionic: [ros-melodic-strawberry-ros-news]
-    focal: [ros-noetic-strawberry-ros-news]
-    xenial: [ros-kinetic-strawberry-ros-news]
-web_video_server:
-  ubuntu:
-    bionic: [ros-melodic-web-video-server]
-    focal:   [ros-noetic-web-video-server]
-    xenial: [ros-kinetic-web-video-server]
+  ubuntu: [sox]
 libssh:
-  ubuntu:
-    bionic: [libssh-dev]
-    focal:  [libssh-dev]
-    xenial: [libssh-dev]
-
-upo_markers:
-  ubuntu:
-    bionic: [ros-melodic-upo-markers]
-    focal: [ros-noetic-upo-markers ]
-zz_depends:
-  ubuntu:
-    bionic: [ros-melodic-zz-depends]
-    xenial: [ros-kinetic-zz-depends]
-    focal: [ros-noetic-zz-depends]
-gcc_7:
-  ubuntu: [gcc-7]
-      
-g++_7:
-  ubuntu: [g++-7]
-
+  ubuntu: [libssh-dev]
 zz-weka-svm:
   ubuntu: [zz-weka-svm]
-zz_msgs:
-  ubuntu:
-    bionic: [ros-melodic-zz-msgs]
-    focal: [ros-noetic-zz-msgs]
-    xenial: [ros-kinetic-zz-msgs]
-zz_params:
-  ubuntu:
-    bionic: [ros-melodic-zz-params]
-    focal: [ros-noetic-zz-params]
-    xenial: [ros-kinetic-zz-params]
 zzcuda:
   ubuntu: [zzcuda]
 zzd:
@@ -294,75 +343,19 @@ zztools:
   ubuntu: [zztools]
 zzvocon:
   ubuntu: [zzvocon]
-
-libk4abt1.1-dev:
-  ubuntu: 
-    focal: [libk4abt1.1-dev]
-
-libk4abt1.1:
-  ubuntu: 
-    focal: [libk4abt1.1]
-
-libk4a1.4-dev:
-  ubuntu: 
-    focal: [libk4a1.4-dev]
-
-libk4a1.4:
-  ubuntu: 
-    focal: [libk4a1.4]
-
-k4a-tools:
-  ubuntu: 
-    focal: [k4a-tools]
-
-ros_tcp_endpoint:
-  ubuntu:
-    focal: [ros-noetic-ros-tcp-endpoint]
-
+gcc_7:
+  ubuntu: [gcc-7]
+g++_7:
+  ubuntu: [g++-7]
 leap_sdk:
   ubuntu:
     focal: [leap]
-    
-strawberry_ros_leap_motion:
-  ubuntu:
-    focal: [ros-noetic-strawberry-ros-leap-motion]
-    
-haru_smalltalk_utils:
-  ubuntu:
-    focal: [ros-noetic-haru-smalltalk-utils]
-   
-haru_unity:
-  ubuntu:
-    focal: [ros-noetic-haru-unity]
-    
-haru_projector:
-  ubuntu:
-    focal: [ros-noetic-haru-projector]
-
-strawberry_ros_hands:
-  ubuntu:
-    focal: [ros-noetic-strawberry-ros-hands]
-
-strawberry_ros_projector:
-  ubuntu:
-    focal: [ros-noetic-strawberry-ros-projector]
-    
-haru_nlp_ros:
-  ubuntu:
-    focal: [ros-noetic-haru-nlp-ros]
-
-haru_photo_activity:
-  ubuntu:
-    focal: [ros-noetic-haru-photo-activity]
-
 python3.10:
   ubuntu:
     focal: [python3.10]
-
 python3.10-dev:
   ubuntu:
     focal: [python3.10-dev]
-
 python3.10-venv:
   ubuntu:
     focal: [python3.10-venv]
