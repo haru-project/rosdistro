@@ -247,26 +247,11 @@ fkie_message_filters:
     xenial: [ros-kinetic-fkie-message-filters]
     bionic: [ros-melodic-fkie-message-filters]
     focal: [ros-noetic-fkie-message-filters]
-nix_common:
-  ubuntu:
-    xenial: [ros-kinetic-nix-common]
-    bionic: [ros-melodic-nix-common]
-    focal: [ros-noetic-nix-common]
 web_video_server:
   ubuntu:
     xenial: [ros-kinetic-web-video-server]
     bionic: [ros-melodic-web-video-server]
     focal:   [ros-noetic-web-video-server]
-interactive_waypoint_markers:
-  ubuntu:
-    xenial: [ros-kinetic-interactive-waypoint-markers]
-    bionic: [ros-melodic-interactive-waypoint-markers]
-    focal: [ros-noetic-interactive-waypoint-markers]
-upo_markers:
-  ubuntu:
-    xenial: [ros-kinetic-upo-markers]
-    bionic: [ros-melodic-upo-markers]
-    focal: [ros-noetic-upo-markers]
 zz_msgs:
   ubuntu:
     xenial: [ros-kinetic-zz-msgs]
