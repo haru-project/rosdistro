@@ -182,6 +182,11 @@ idmind_tabletop_visualization:
     xenial: [ros-kinetic-idmind-tabletop-visualization]
     bionic: [ros-melodic-idmind-tabletop-visualization]
     focal: [ros-noetic-idmind-tabletop-visualization]
+idmind_tabletop_ros_woz:
+  ubuntu:
+    xenial: [ros-kinetic-idmind-tabletop-ros-woz]
+    bionic: [ros-melodic-idmind-tabletop-ros-woz]
+    focal: [ros-noetic-idmind-tabletop-ros-woz]
 
 # Behavior Tree
 behavior_tree_core:
