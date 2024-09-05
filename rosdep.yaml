@@ -189,6 +189,9 @@ idmind_tabletop_ros_woz:
     focal: [ros-noetic-idmind-tabletop-ros-woz]
 
 # Behavior Tree
+groot:
+  ubuntu:
+    focal: [ros-noetic-groot]
 behavior_tree_core:
   ubuntu:
     xenial: [ros-kinetic-behavior-tree-core]
