@@ -41,7 +41,7 @@ haru_photo_activity:
     xenial: [ros-kinetic-haru-photo-activity]
     bionic: [ros-melodic-haru-photo-activity]
     focal: [ros-noetic-haru-photo-activity]
-haru_driver:
+haru2_driver:
   ubuntu:
     focal: [ros-noetic-haru2-driver]
 
