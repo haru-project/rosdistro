@@ -98,6 +98,11 @@ strawberry_ros_people:
     xenial: [ros-kinetic-strawberry-ros-people]
     bionic: [ros-melodic-strawberry-ros-people]
     focal: [ros-noetic-strawberry-ros-people]
+strawberry_ros_gazing:
+  ubuntu:
+    xenial: [ros-kinectic-strawberry-ros-gazing]
+    bionic: [ros-melodic-strawberry-ros-gazing]
+    focal: [ros-noetic-strawberry-ros-gazing]
 strawberry_ros_tf:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-tf]
