@@ -16,6 +16,9 @@ haru_ipad_action_server:
     xenial: [ros-kinetic-haru-ipad-action-server]
     bionic: [ros-melodic-haru-ipad-action-server]
     focal: [ros-noetic-haru-ipad-action-server]
+haru_ipad_msgs:
+  ubuntu:
+    focal: [ros-noetic-haru-ipad-msgs]
 haru_smalltalk_utils:
   ubuntu:
     xenial: [ros-kinetic-haru-smalltalk-utils]
