@@ -66,6 +66,11 @@ haru_encouraging_mediator_msgs:
     focal: [ros-noetic-haru-encouraging-mediator-msgs]
 
 # Strawberry
+strawberry_ros_faces_module:
+  ubuntu:
+    xenial: [ros-kinetic-strawberry-ros-faces-module]
+    bionic: [ros-melodic-strawberry-ros-faces-module]
+    focal: [ros-noetic-strawberry-ros-faces-module]
 strawberry_ros_asr:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-asr]
