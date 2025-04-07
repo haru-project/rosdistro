@@ -47,6 +47,11 @@ haru_photo_activity:
 haru2_driver:
   ubuntu:
     focal: [ros-noetic-haru2-driver]
+    noble: [ros-jazzy-haru2-driver]
+
+haru2_neck_control:
+  ubuntu:
+    noble: [ros-jazzy-haru2-neck-control]
 
 # Msgs 
 strawberry_ros_msgs:
@@ -164,6 +169,7 @@ idmind_tabletop:
     xenial: [ros-kinetic-idmind-tabletop]
     bionic: [ros-melodic-idmind-tabletop]
     focal: [ros-noetic-idmind-tabletop]
+    noble: [ros-jazzy-idmind-tabletop]
 idmind_tabletop_driver:
   ubuntu:
     xenial: [ros-kinetic-idmind-tabletop-driver]
@@ -179,6 +185,7 @@ idmind_tabletop_lip_sync:
     xenial: [ros-kinetic-idmind-tabletop-lip-sync]
     bionic: [ros-melodic-idmind-tabletop-lip-sync]
     focal: [ros-noetic-idmind-tabletop-lip-sync]
+    noble: [ros-jazzy-idmind-tabletop-lip-sync]
 idmind_tabletop_orbbec:
   ubuntu:
     xenial: [ros-kinetic-idmind-tabletop-orbbec]
@@ -258,6 +265,7 @@ cerevoice_ros:
     xenial: [ros-kinetic-cerevoice-ros]
     bionic: [ros-melodic-cerevoice-ros]
     focal: [ros-noetic-cerevoice-ros]
+    noble: [ros-jazzy-cerevoice-ros]
 
 # Simulator & Visualization
 # This package has some useful tools for working with Actors in Gazebo simulations
