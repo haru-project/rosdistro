@@ -58,6 +58,7 @@ idmind_tabletop_msgs:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-msgs]
     focal: [ros-noetic-idmind-tabletop-msgs]
+    noble: [ros-jazzy-idmind-tabletop-msgs]
     xenial: [ros-kinetic-idmind-tabletop-msgs]
 haru_encouraging_mediator_msgs:
   ubuntu:
