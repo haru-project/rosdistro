@@ -1,6 +1,6 @@
 # rosdistro
 
-Service Robotics Lab custom debian related scripts:
+Haru Project custom debian related scripts:
 
 * **rosdep.yaml**: rosdep lists. Relation between the name of the packages as dependency (package.xml) and the name of the APT debian package. To use it, you have to tell rosdep where it can find this file. To do so, add a new file called `50-haru.list` in `/etc/ros/rosdep/sources.list.d` and add the following line:
 
