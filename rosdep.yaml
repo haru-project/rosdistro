@@ -1,6 +1,10 @@
 # This file is used to define the dependencies of the packages in the repository.
 
 # Haru related packages
+haru2_core_msgs:
+  noble: [ros-jazzy-haru2-core-msgs]
+
+
 haru_hanoi_tower_utils:
   ubuntu:
     bionic: [ros-melodic-haru-hanoi-tower-utils]
@@ -297,6 +301,7 @@ ros_tcp_endpoint:
     xenial: [ros-kinetic-ros-tcp-endpoint]
     bionic: [ros-melodic-ros-tcp-endpoint]
     focal: [ros-noetic-ros-tcp-endpoint]
+    noble: [ros-jazzy-ros-tcp-endpoint]
 fkie_message_filters:
   ubuntu:
     xenial: [ros-kinetic-fkie-message-filters]
