@@ -2,7 +2,11 @@
 
 # Haru related packages
 haru2_core_msgs:
-  noble: [ros-jazzy-haru2-core-msgs]
+  ubuntu:
+    noble: [ros-jazzy-haru2-core-msgs]
+haru2_skills:
+  ubuntu:
+    noble: [ros-jazzy-haru2-skills]
 
 
 haru_hanoi_tower_utils:
