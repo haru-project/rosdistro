@@ -1,12 +1,18 @@
 # This file is used to define the dependencies of the packages in the repository.
 
-# Haru related packages
+# Haru 2
 haru2_core_msgs:
   ubuntu:
     noble: [ros-jazzy-haru2-core-msgs]
 haru2_skills:
   ubuntu:
     noble: [ros-jazzy-haru2-skills]
+haru2_core:
+  ubuntu:
+    noble: [ros-jazzy-haru2-core]
+haru2_teleop:
+  ubuntu:
+    noble: [ros-jazzy-haru2-teleop]
 
 
 haru_hanoi_tower_utils:
