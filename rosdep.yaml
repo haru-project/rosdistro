@@ -76,6 +76,7 @@ strawberry_ros_msgs:
     bionic: [ros-melodic-strawberry-ros-msgs]
     focal: [ros-noetic-strawberry-ros-msgs]
     xenial: [ros-kinetic-strawberry-ros-msgs]
+    noble: [ros-jazzy-strawberry-ros-msgs]
 idmind_tabletop_msgs:
   ubuntu:
     bionic: [ros-melodic-idmind-tabletop-msgs]
@@ -94,6 +95,7 @@ strawberry_ros_faces_module:
     xenial: [ros-kinetic-strawberry-ros-faces-module]
     bionic: [ros-melodic-strawberry-ros-faces-module]
     focal: [ros-noetic-strawberry-ros-faces-module]
+    noble: [ros-jazzy-strawberry-ros-faces-module]
 strawberry_ros_asr:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-asr]
@@ -104,6 +106,8 @@ strawberry_ros_azure_kinect:
     xenial: [ros-kinetic-strawberry-ros-azure-kinect]
     bionic: [ros-melodic-strawberry-ros-azure-kinect]
     focal: [ros-noetic-strawberry-ros-azure-kinect]
+    noble: [ros-jazzy-strawberry-ros-azure-kinect]
+
 strawberry_ros_dialog:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-dialog]
@@ -129,6 +133,7 @@ strawberry_ros_people:
     xenial: [ros-kinetic-strawberry-ros-people]
     bionic: [ros-melodic-strawberry-ros-people]
     focal: [ros-noetic-strawberry-ros-people]
+    noble: [ros-jazzy-strawberry-ros-people]
 strawberry_ros_gazing:
   ubuntu:
     xenial: [ros-kinectic-strawberry-ros-gazing]
@@ -144,6 +149,7 @@ strawberry_ros_visualization:
     xenial: [ros-kinetic-strawberry-ros-visualization]
     bionic: [ros-melodic-strawberry-ros-visualization]
     focal: [ros-noetic-strawberry-ros-visualization]
+    noble: [ros-jazzy-strawberry-ros-visualization]
 strawberry_ros_zz:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-zz]
@@ -174,6 +180,7 @@ strawberry_ros_hands:
     xenial: [ros-kinetic-strawberry-ros-hands]
     bionic: [ros-melodic-strawberry-ros-hands]
     focal: [ros-noetic-strawberry-ros-hands]
+    noble: [ros-jazzy-strawberry-ros-hands]
 strawberry_ros_projector:
   ubuntu:
     xenial: [ros-kinetic-strawberry-ros-projector]
