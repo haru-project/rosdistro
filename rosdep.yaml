@@ -272,6 +272,11 @@ azure_kinect_ros_driver:
     xenial: [ros-kinetic-azure-kinect-ros-driver]
     bionic: [ros-melodic-azure-kinect-ros-driver]
     focal: [ros-noetic-azure-kinect-ros-driver]
+
+azure_kinect_ros2_driver:
+  ubuntu:
+    noble: [ros-jazzy-azure-kinect-ros2-driver]
+
 libk4abt1.1-dev:
   ubuntu: [libk4abt1.1-dev]
 libk4abt1.1:
