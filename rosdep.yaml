@@ -320,6 +320,7 @@ fkie_message_filters:
     xenial: [ros-kinetic-fkie-message-filters]
     bionic: [ros-melodic-fkie-message-filters]
     focal: [ros-noetic-fkie-message-filters]
+    noble: [ros-jazzy-fkie-message-filters]
 web_video_server:
   ubuntu:
     xenial: [ros-kinetic-web-video-server]
