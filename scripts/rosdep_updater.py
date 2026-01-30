@@ -84,20 +84,25 @@ class ROSDepUpdater:
                     return False
                     
                 ubuntu_data = package_data['ubuntu']
-                if not isinstance(ubuntu_data, dict):
-                    logger.error(f"Package {package_name} ubuntu data must be dictionary")
-                    return False
-                    
-                # Validate distribution entries
-                for distro, packages in ubuntu_data.items():
-                    if not isinstance(packages, list):
-                        logger.error(f"Package {package_name} distro {distro} must be list")
-                        return False
-                        
-                    for pkg in packages:
+                if isinstance(ubuntu_data, list):
+                    for pkg in ubuntu_data:
                         if not isinstance(pkg, str):
-                            logger.error(f"Package {package_name} distro {distro} must contain strings")
+                            logger.error(f"Package {package_name} ubuntu list must contain strings")
                             return False
+                elif isinstance(ubuntu_data, dict):
+                    # Validate distribution entries
+                    for distro, packages in ubuntu_data.items():
+                        if not isinstance(packages, list):
+                            logger.error(f"Package {package_name} distro {distro} must be list")
+                            return False
+                            
+                        for pkg in packages:
+                            if not isinstance(pkg, str):
+                                logger.error(f"Package {package_name} distro {distro} must contain strings")
+                                return False
+                else:
+                    logger.error(f"Package {package_name} ubuntu data must be dictionary or list")
+                    return False
                             
             logger.debug("YAML validation passed")
             return True
@@ -273,16 +278,24 @@ class ROSDepUpdater:
                 continue
                 
             ubuntu_data = package_data['ubuntu']
-            
-            # Check for empty distributions
-            for distro, packages in ubuntu_data.items():
-                if not packages:
-                    issues.append(f"Package {package_name} has empty {distro} distribution")
-                    
-                # Check for invalid package names
-                for pkg in packages:
+            if isinstance(ubuntu_data, list):
+                if not ubuntu_data:
+                    issues.append(f"Package {package_name} has empty ubuntu list")
+                for pkg in ubuntu_data:
                     if not pkg.startswith('ros-'):
                         issues.append(f"Package {package_name} has non-ROS package: {pkg}")
+            elif isinstance(ubuntu_data, dict):
+                # Check for empty distributions
+                for distro, packages in ubuntu_data.items():
+                    if not packages:
+                        issues.append(f"Package {package_name} has empty {distro} distribution")
+                        
+                    # Check for invalid package names
+                    for pkg in packages:
+                        if not pkg.startswith('ros-'):
+                            issues.append(f"Package {package_name} has non-ROS package: {pkg}")
+            else:
+                issues.append(f"Package {package_name} ubuntu data must be dictionary or list")
                         
         return issues
 
