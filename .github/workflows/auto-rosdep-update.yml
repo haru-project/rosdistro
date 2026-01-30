@@ -1,0 +1,93 @@
+name: Auto-Update rosdep.yaml
+
+on:
+    repository_dispatch:
+        types: [repository_created]
+
+    schedule:
+        # Run every 30 minutes as fallback
+        - cron: "*/30 * * * *"
+
+    workflow_dispatch:
+        inputs:
+            repository_name:
+                description: "Repository name to process (optional)"
+                required: false
+                type: string
+            force_update:
+                description: "Force update existing entries"
+                required: false
+                type: boolean
+                default: false
+
+jobs:
+    update-rosdep:
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: write
+            pull-requests: write
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  token: ${{ secrets.ROSDEP_UPDATE_TOKEN }}
+
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.11"
+
+            - name: Install dependencies
+              run: |
+                  pip install PyYAML xmltodict
+
+            - name: Configure Git
+              run: |
+                  git config --local user.email "action@github.com"
+                  git config --local user.name "GitHub Action"
+
+            - name: Process repositories
+              run: python scripts/main.py
+              env:
+                  GITHUB_TOKEN: ${{ secrets.ROSDEP_UPDATE_TOKEN }}
+                  REPOSITORY_NAME: ${{ github.event.client_payload.repository.name || github.event.inputs.repository_name }}
+                  FORCE_UPDATE: ${{ github.event.inputs.force_update || 'false' }}
+                  GITHUB_REPOSITORY: ${{ github.repository }}
+                  GITHUB_ACTOR: ${{ github.actor }}
+
+            - name: Create Pull Request
+              uses: peter-evans/create-pull-request@v5
+              if: success()
+              with:
+                  token: ${{ secrets.ROSDEP_UPDATE_TOKEN }}
+                  title: "Auto-update rosdep.yaml with new ROS packages"
+                  body: |
+                      ## 🤖 Automated rosdep.yaml Update
+
+                      This PR automatically adds new ROS package entries to rosdep.yaml.
+
+                      ### Changes Made:
+                      - Scanned haru-project organization for new repositories
+                      - Found ROS packages in repositories
+                      - Added rosdep entries for ROS2 distributions:
+                        - Humble (jammy)
+                        - Jazzy (noble)
+                        - Kilted (noble)
+
+                      ### Validation:
+                      - ✅ YAML syntax validated
+                      - ✅ Package name conversion (underscore → hyphen)
+                      - ✅ All required distributions included
+
+                      **Triggered by:** ${{ github.event_name }}
+                      **Actor:** ${{ github.actor }}
+
+                      _This PR was generated automatically by the rosdep automation workflow._
+                  branch: auto-rosdep-update-${{ github.run_number }}
+                  delete-branch: true
+                  labels: |
+                      automated
+                      rosdep
+                      ros2
