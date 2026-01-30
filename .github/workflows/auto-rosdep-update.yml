@@ -26,7 +26,6 @@ jobs:
 
         permissions:
             contents: write
-            pull-requests: write
 
         steps:
             - name: Checkout repository
@@ -57,37 +56,20 @@ jobs:
                   GITHUB_REPOSITORY: ${{ github.repository }}
                   GITHUB_ACTOR: ${{ github.actor }}
 
-            - name: Create Pull Request
-              uses: peter-evans/create-pull-request@v5
-              if: success()
-              with:
-                  token: ${{ secrets.ROSDEP_UPDATE_TOKEN }}
-                  title: "Auto-update rosdep.yaml with new ROS packages"
-                  body: |
-                      ## 🤖 Automated rosdep.yaml Update
+            - name: Commit and push changes
+              run: |
+                  if git diff --quiet; then
+                      echo "No changes to commit"
+                  else
+                      git add rosdep.yaml
+                      git commit -m "Auto-update rosdep.yaml with new ROS packages
 
-                      This PR automatically adds new ROS package entries to rosdep.yaml.
-
-                      ### Changes Made:
                       - Scanned haru-project organization for new repositories
-                      - Found ROS packages in repositories
-                      - Added rosdep entries for ROS2 distributions:
-                        - Humble (jammy)
-                        - Jazzy (noble)
-                        - Kilted (noble)
+                      - Added rosdep entries for ROS2 distributions: Humble (jammy), Jazzy & Kilted (noble)
+                      - Package name conversion (underscore → hyphen)
+                      - YAML syntax validated
 
-                      ### Validation:
-                      - ✅ YAML syntax validated
-                      - ✅ Package name conversion (underscore → hyphen)
-                      - ✅ All required distributions included
-
-                      **Triggered by:** ${{ github.event_name }}
-                      **Actor:** ${{ github.actor }}
-
-                      _This PR was generated automatically by the rosdep automation workflow._
-                  branch: auto-rosdep-update-${{ github.run_number }}
-                  delete-branch: true
-                  labels: |
-                      automated
-                      rosdep
-                      ros2
+                      Triggered by: ${{ github.event_name }}
+                      Actor: ${{ github.actor }}"
+                      git push
+                  fi
