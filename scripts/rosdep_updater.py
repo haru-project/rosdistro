@@ -7,7 +7,7 @@ import yaml
 import logging
 import os
 import shutil
-from typing import List, Dict, Set, Any
+from typing import List, Dict, Set, Any, Optional
 from package_analyzer import ROSPackage
 
 logger = logging.getLogger(__name__)
@@ -52,6 +52,34 @@ class ROSDepUpdater:
             Set of package names already in rosdep.yaml
         """
         return set(self.rosdep_data.keys()) if self.rosdep_data else set()
+
+    def get_manual_packages(self, manual_file: str = "manual_entries.txt") -> Set[str]:
+        """
+        Get set of manually managed package names to exclude from automation.
+
+        Sources:
+          - Environment variable MANUAL_ENTRIES (comma/space separated)
+          - manual_entries.txt (one package name per line, '#' comments allowed)
+        """
+        manual_packages: Set[str] = set()
+
+        env_value = os.getenv("MANUAL_ENTRIES", "")
+        if env_value:
+            parts = [p.strip() for p in env_value.replace(",", " ").split()]
+            manual_packages.update(p for p in parts if p)
+
+        if os.path.exists(manual_file):
+            try:
+                with open(manual_file, "r", encoding="utf-8") as f:
+                    for line in f:
+                        stripped = line.strip()
+                        if not stripped or stripped.startswith("#"):
+                            continue
+                        manual_packages.add(stripped)
+            except Exception as e:
+                logger.error(f"Error reading manual entries file {manual_file}: {e}")
+
+        return manual_packages
     
     def validate_yaml_syntax(self, yaml_data: Dict) -> bool:
         """
@@ -128,8 +156,15 @@ class ROSDepUpdater:
         package_name = ros_package.name
         
         # Check if package already exists
-        if package_name in self.rosdep_data and not force_update:
-            logger.info(f"Package {package_name} already exists, skipping (use force_update=True to override)")
+        existed = package_name in self.rosdep_data
+        if existed:
+            if force_update:
+                logger.warning(
+                    f"Package {package_name} already exists; skipping to preserve existing entry "
+                    "(force_update ignored)"
+                )
+            else:
+                logger.info(f"Package {package_name} already exists, skipping")
             return False
             
         # Generate rosdep entries
@@ -143,7 +178,7 @@ class ROSDepUpdater:
         # Add to rosdep data
         self.rosdep_data[package_name] = package_entry
         
-        action = "Updated" if package_name in self.rosdep_data else "Added"
+        action = "Updated" if existed else "Added"
         logger.info(f"{action} package {package_name} from repository {ros_package.repository}")
         
         return True
@@ -171,20 +206,34 @@ class ROSDepUpdater:
                 
         return added_count
     
-    def save_rosdep_file(self, backup: bool = True) -> bool:
+    def save_rosdep_file(self, backup: bool = True, append_only: bool = False, original_packages: Optional[Set[str]] = None) -> bool:
         """
         Save rosdep data to file with validation.
         
         Args:
             backup: Create backup of original file
+            append_only: Only append new entries without rewriting existing ones
+            original_packages: Set of packages present before updates (required for append_only)
             
         Returns:
             True if successfully saved
         """
-        # Validate before saving
-        if not self.validate_yaml_syntax(self.rosdep_data):
-            logger.error("Cannot save rosdep.yaml: validation failed")
-            return False
+        if append_only:
+            if original_packages is None:
+                logger.error("Cannot save rosdep.yaml: original_packages required for append_only")
+                return False
+            new_entries = {k: v for k, v in self.rosdep_data.items() if k not in original_packages}
+            if not new_entries:
+                logger.info("No new entries to append")
+                return True
+            if not self.validate_yaml_syntax(new_entries):
+                logger.error("Cannot save rosdep.yaml: validation failed for new entries")
+                return False
+        else:
+            # Validate before saving
+            if not self.validate_yaml_syntax(self.rosdep_data):
+                logger.error("Cannot save rosdep.yaml: validation failed")
+                return False
             
         try:
             # Create backup if requested
@@ -193,20 +242,43 @@ class ROSDepUpdater:
                 shutil.copy2(self.rosdep_file, backup_file)
                 logger.info(f"Created backup: {backup_file}")
                 
-            # Sort packages alphabetically for consistent output
-            sorted_data = dict(sorted(self.rosdep_data.items()))
-            
-            # Write to file with proper formatting
-            with open(self.rosdep_file, 'w', encoding='utf-8') as f:
-                yaml.dump(
-                    sorted_data,
-                    f,
+            if append_only:
+                # Append only new entries to avoid modifying existing content
+                sorted_new = dict(sorted(new_entries.items()))
+                new_yaml = yaml.dump(
+                    sorted_new,
                     default_flow_style=False,
-                    sort_keys=False,  # We pre-sorted
+                    sort_keys=False,
                     indent=2,
                     width=120,
                     allow_unicode=True
                 )
+                needs_newline = False
+                if os.path.exists(self.rosdep_file) and os.path.getsize(self.rosdep_file) > 0:
+                    with open(self.rosdep_file, 'rb') as existing:
+                        existing.seek(-1, os.SEEK_END)
+                        needs_newline = existing.read(1) != b'\n'
+                with open(self.rosdep_file, 'a', encoding='utf-8') as f:
+                    if needs_newline:
+                        f.write('\n')
+                    if os.path.exists(self.rosdep_file) and os.path.getsize(self.rosdep_file) > 0:
+                        f.write('\n')
+                    f.write(new_yaml)
+            else:
+                # Sort packages alphabetically for consistent output
+                sorted_data = dict(sorted(self.rosdep_data.items()))
+                
+                # Write to file with proper formatting
+                with open(self.rosdep_file, 'w', encoding='utf-8') as f:
+                    yaml.dump(
+                        sorted_data,
+                        f,
+                        default_flow_style=False,
+                        sort_keys=False,  # We pre-sorted
+                        indent=2,
+                        width=120,
+                        allow_unicode=True
+                    )
                 
             logger.info(f"Successfully saved rosdep.yaml with {len(self.rosdep_data)} packages")
             return True
@@ -322,6 +394,14 @@ def update_rosdep_with_packages(packages: List[ROSPackage], rosdep_file: str = '
         packages_to_add = updater.filter_new_packages(packages)
     else:
         packages_to_add = packages
+
+    manual_packages = updater.get_manual_packages()
+    if manual_packages:
+        before_count = len(packages_to_add)
+        packages_to_add = [pkg for pkg in packages_to_add if pkg.name not in manual_packages]
+        skipped = before_count - len(packages_to_add)
+        if skipped:
+            logger.info(f"Skipped {skipped} manual package(s) from automation")
         
     if not packages_to_add:
         logger.info("No new packages to add")
@@ -345,7 +425,7 @@ def update_rosdep_with_packages(packages: List[ROSPackage], rosdep_file: str = '
         }
     
     # Save file
-    if updater.save_rosdep_file():
+    if updater.save_rosdep_file(append_only=True, original_packages=original_packages):
         changes = updater.get_changes_summary(original_packages)
         logger.info(f"Successfully updated rosdep.yaml: {changes['added_count']} packages added")
         
