@@ -7,6 +7,7 @@ import xml.etree.ElementTree as ET
 import logging
 import os
 from typing import List, Dict, Optional, Set
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from github_api import GitHubAPI
 
 logger = logging.getLogger(__name__)
@@ -65,14 +66,16 @@ class ROSPackage:
 class PackageAnalyzer:
     """Analyzes repositories for ROS packages."""
     
-    def __init__(self, github_client: GitHubAPI):
+    def __init__(self, github_client: GitHubAPI, max_workers: int = 5):
         """
         Initialize package analyzer.
         
         Args:
             github_client: GitHub API client
+            max_workers: Maximum number of concurrent threads for repository analysis
         """
         self.github_client = github_client
+        self.max_workers = max_workers
         
     def extract_package_name_from_xml(self, xml_content: str) -> Optional[str]:
         """
@@ -205,19 +208,53 @@ class PackageAnalyzer:
             else:
                 logger.error(f"Repository {org}/{specific_repo} not found or not accessible")
         else:
-            # Analyze all organization repositories
+            # Analyze all organization repositories in parallel
             repositories = self.github_client.get_organization_repositories(org)
             
-            for repository in repositories:
-                try:
-                    packages = self.analyze_repository(repository)
-                    all_packages.extend(packages)
-                except Exception as e:
-                    logger.error(f"Error analyzing repository {repository['name']}: {e}")
-                    continue
-                    
-        logger.info(f"Analysis complete. Found {len(all_packages)} ROS packages total")
+            if not repositories:
+                logger.warning(f"No repositories found in {org} organization")
+                return all_packages
+                
+            logger.info(f"Starting parallel analysis of {len(repositories)} repositories with {self.max_workers} workers")
+            
+            # Use ThreadPoolExecutor for parallel processing
+            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+                # Submit all repository analysis tasks
+                future_to_repo = {
+                    executor.submit(self._analyze_repository_safe, repo): repo['name'] 
+                    for repo in repositories
+                }
+                
+                # Process completed tasks
+                for future in as_completed(future_to_repo):
+                    repo_name = future_to_repo[future]
+                    try:
+                        packages = future.result()
+                        all_packages.extend(packages)
+                        logger.debug(f"Completed analysis of {repo_name}: {len(packages)} packages")
+                    except Exception as e:
+                        logger.error(f"Error analyzing repository {repo_name}: {e}")
+                        continue
+                        
+        logger.info(f"Parallel analysis complete. Found {len(all_packages)} ROS packages total")
         return all_packages
+    
+    def _analyze_repository_safe(self, repository: Dict) -> List[ROSPackage]:
+        """
+        Thread-safe wrapper for analyze_repository with proper exception handling.
+        
+        Args:
+            repository: Repository dictionary from GitHub API
+            
+        Returns:
+            List of discovered ROS packages (empty list on error)
+        """
+        try:
+            return self.analyze_repository(repository)
+        except Exception as e:
+            repo_name = repository.get('name', 'unknown')
+            logger.error(f"Exception in repository analysis for {repo_name}: {e}", exc_info=True)
+            return []
     
     def get_unique_packages(self, packages: List[ROSPackage]) -> List[ROSPackage]:
         """
@@ -252,7 +289,8 @@ if __name__ == "__main__":
     
     client = create_github_client()
     if client:
-        analyzer = PackageAnalyzer(client)
+        # Use 3 workers for testing to avoid overwhelming API
+        analyzer = PackageAnalyzer(client, max_workers=3)
         packages = analyzer.analyze_organization_repositories()
         
         print(f"\nFound {len(packages)} ROS packages:")
