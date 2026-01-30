@@ -1143,3 +1143,102 @@ vlm_detections:
     noble:
     - ros-jazzy-vlm-detections
     - ros-kilted-vlm-detections
+
+behaviortree_ros2:
+  ubuntu:
+    jammy:
+    - ros-humble-behaviortree-ros2
+    noble:
+    - ros-jazzy-behaviortree-ros2
+    - ros-kilted-behaviortree-ros2
+bt_examples:
+  ubuntu:
+    jammy:
+    - ros-humble-bt-examples
+    noble:
+    - ros-jazzy-bt-examples
+    - ros-kilted-bt-examples
+btcpp_ros2_interfaces:
+  ubuntu:
+    jammy:
+    - ros-humble-btcpp-ros2-interfaces
+    noble:
+    - ros-jazzy-btcpp-ros2-interfaces
+    - ros-kilted-btcpp-ros2-interfaces
+fdopencv_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-fdopencv-msgs
+    noble:
+    - ros-jazzy-fdopencv-msgs
+    - ros-kilted-fdopencv-msgs
+haru_agent_reasoner:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-agent-reasoner
+    noble:
+    - ros-jazzy-haru-agent-reasoner
+    - ros-kilted-haru-agent-reasoner
+julius_ros:
+  ubuntu:
+    jammy:
+    - ros-humble-julius-ros
+    noble:
+    - ros-jazzy-julius-ros
+    - ros-kilted-julius-ros
+prob_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-prob-msgs
+    noble:
+    - ros-jazzy-prob-msgs
+    - ros-kilted-prob-msgs
+zz_dynamic_reconfigure:
+  ubuntu:
+    jammy:
+    - ros-humble-zz-dynamic-reconfigure
+    noble:
+    - ros-jazzy-zz-dynamic-reconfigure
+    - ros-kilted-zz-dynamic-reconfigure
+zzd_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-zzd-msgs
+    noble:
+    - ros-jazzy-zzd-msgs
+    - ros-kilted-zzd-msgs
+zzd_params:
+  ubuntu:
+    jammy:
+    - ros-humble-zzd-params
+    noble:
+    - ros-jazzy-zzd-params
+    - ros-kilted-zzd-params
+zzd_soundmap:
+  ubuntu:
+    jammy:
+    - ros-humble-zzd-soundmap
+    noble:
+    - ros-jazzy-zzd-soundmap
+    - ros-kilted-zzd-soundmap
+zzdviz:
+  ubuntu:
+    jammy:
+    - ros-humble-zzdviz
+    noble:
+    - ros-jazzy-zzdviz
+    - ros-kilted-zzdviz
+zzold_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-zzold-msgs
+    noble:
+    - ros-jazzy-zzold-msgs
+    - ros-kilted-zzold-msgs
+zzviz:
+  ubuntu:
+    jammy:
+    - ros-humble-zzviz
+    noble:
+    - ros-jazzy-zzviz
+    - ros-kilted-zzviz
