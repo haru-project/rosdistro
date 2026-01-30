@@ -17,6 +17,15 @@ haru2_teleop:
 haru_speech_msgs:
   ubuntu:
     noble: [ros-jazzy-haru-speech-msgs]
+haru_llm_msgs:
+  ubuntu:
+    noble: [ros-jazzy-haru-llm-msgs]
+haru_content_msgs:
+  ubuntu:
+    noble: [ros-jazzy-haru-content-msgs]
+haru_agent_reasoner_msgs:
+  ubuntu:
+    noble: [ros-jazzy-haru-agent-reasoner-msgs]
 
 haru_hanoi_tower_utils:
   ubuntu:
