@@ -15,11 +15,11 @@ logger = logging.getLogger(__name__)
 
 class ROSPackage:
     """Represents a ROS package with its metadata."""
-    
+
     def __init__(self, name: str, repository: str, file_path: str):
         """
         Initialize ROS package.
-        
+
         Args:
             name: Package name from package.xml
             repository: Repository name containing the package
@@ -29,78 +29,79 @@ class ROSPackage:
         self.repository = repository
         self.file_path = file_path
         self.debian_name = self._convert_to_debian_name(name)
-        
+
     def _convert_to_debian_name(self, package_name: str) -> str:
         """
         Convert package name to debian package name format.
         Convert underscores to hyphens for debian compatibility.
-        
+
         Args:
             package_name: Original package name
-            
+
         Returns:
             Debian-compatible package name
         """
         return package_name.replace('_', '-')
-    
+
     def get_rosdep_entries(self) -> Dict[str, List[str]]:
         """
         Generate rosdep.yaml entries for all ROS2 distributions.
-        
+
         Returns:
             Dictionary with Ubuntu codenames and corresponding debian packages
         """
         return {
-            'jammy': [f'ros-humble-{self.debian_name}'],  # Ubuntu 22.04 - ROS2 Humble
-            'noble': [f'ros-jazzy-{self.debian_name}',    # Ubuntu 24.04 - ROS2 Jazzy
-                     f'ros-kilted-{self.debian_name}']    # Ubuntu 24.04 - ROS2 Kilted
+            # Ubuntu 22.04 - ROS2 Humble
+            'jammy': [f'ros-humble-{self.debian_name}'],
+            # Ubuntu 24.04 - ROS2 Jazzy
+            'noble': [f'ros-jazzy-{self.debian_name}']
         }
-    
+
     def __str__(self):
         return f"ROSPackage(name='{self.name}', repo='{self.repository}', debian='{self.debian_name}')"
-    
+
     def __repr__(self):
         return self.__str__()
 
 
 class PackageAnalyzer:
     """Analyzes repositories for ROS packages."""
-    
+
     def __init__(self, github_client: GitHubAPI, max_workers: int = 5):
         """
         Initialize package analyzer.
-        
+
         Args:
             github_client: GitHub API client
             max_workers: Maximum number of concurrent threads for repository analysis
         """
         self.github_client = github_client
         self.max_workers = max_workers
-        
+
     def extract_package_name_from_xml(self, xml_content: str) -> Optional[str]:
         """
         Extract package name from package.xml content.
-        
+
         Args:
             xml_content: Raw XML content
-            
+
         Returns:
             Package name or None if parsing fails
         """
         try:
             root = ET.fromstring(xml_content)
             name_element = root.find('name')
-            
+
             if name_element is not None and name_element.text:
                 package_name = name_element.text.strip()
                 logger.debug(f"Extracted package name: {package_name}")
                 return package_name
-                
+
         except ET.ParseError as e:
             logger.warning(f"Failed to parse package.xml: {e}")
-            
+
         return None
-    
+
     def validate_ros_package_structure(
         self,
         owner: str,
@@ -111,47 +112,53 @@ class PackageAnalyzer:
     ) -> bool:
         """
         Validate that the directory contains required ROS package files.
-        
+
         Args:
             owner: Repository owner
             repo: Repository name
             package_xml_path: Path to package.xml
             ref: Git reference (defaults to default branch)
-            
+
         Returns:
             True if valid ROS package structure
         """
         # Get directory of package.xml
-        package_dir = os.path.dirname(package_xml_path) if package_xml_path else ''
-        
+        package_dir = os.path.dirname(
+            package_xml_path) if package_xml_path else ''
+
         # Check for CMakeLists.txt in the same directory
-        cmake_path = os.path.join(package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
-        
+        cmake_path = os.path.join(
+            package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
+
         if tree_paths is not None:
-            cmake_path = os.path.join(package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
+            cmake_path = os.path.join(
+                package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
             has_cmake = cmake_path in tree_paths
         else:
             # Get directory contents from default branch
-            contents = self.github_client.get_repository_contents(owner, repo, package_dir, ref)
+            contents = self.github_client.get_repository_contents(
+                owner, repo, package_dir, ref)
             if not contents:
                 return False
-                
+
             # Look for required files
-            has_cmake = any(item['name'] == 'CMakeLists.txt' for item in contents if item['type'] == 'file')
-        
+            has_cmake = any(
+                item['name'] == 'CMakeLists.txt' for item in contents if item['type'] == 'file')
+
         if not has_cmake:
-            logger.debug(f"No CMakeLists.txt found in {owner}/{repo}/{package_dir}")
+            logger.debug(
+                f"No CMakeLists.txt found in {owner}/{repo}/{package_dir}")
             return False
-            
+
         return True
-    
+
     def analyze_repository(self, repository: Dict) -> List[ROSPackage]:
         """
         Analyze a single repository for ROS packages.
-        
+
         Args:
             repository: Repository dictionary from GitHub API
-            
+
         Returns:
             List of discovered ROS packages
         """
@@ -159,151 +166,172 @@ class PackageAnalyzer:
         owner = repository['owner']['login']
         repo_name = repository['name']
         default_branch = repository.get('default_branch', 'main')
-        
-        logger.info(f"Analyzing repository: {owner}/{repo_name} (default branch: {default_branch})")
-        
-        tree_paths = self.github_client.get_repository_tree_paths(owner, repo_name, default_branch)
+
+        logger.info(
+            f"Analyzing repository: {owner}/{repo_name} (default branch: {default_branch})")
+
+        tree_paths = self.github_client.get_repository_tree_paths(
+            owner, repo_name, default_branch)
         if tree_paths is not None:
-            package_xml_files = [path for path in tree_paths if path.endswith('package.xml')]
+            package_xml_files = [
+                path for path in tree_paths if path.endswith('package.xml')]
         else:
             # Find all package.xml files recursively using default branch for efficiency
-            package_xml_files = self.github_client.find_package_xml_files(owner, repo_name, '', default_branch)
-        
+            package_xml_files = self.github_client.find_package_xml_files(
+                owner, repo_name, '', default_branch)
+
         if not package_xml_files:
             logger.debug(f"No package.xml files found in {owner}/{repo_name}")
             return packages
-            
-        logger.info(f"Found {len(package_xml_files)} package.xml files in {repo_name}")
-        
+
+        logger.info(
+            f"Found {len(package_xml_files)} package.xml files in {repo_name}")
+
         for package_xml_path in package_xml_files:
             # Validate ROS package structure
             if not self.validate_ros_package_structure(owner, repo_name, package_xml_path, default_branch, tree_paths):
-                logger.warning(f"Invalid ROS package structure at {repo_name}/{package_xml_path}")
+                logger.warning(
+                    f"Invalid ROS package structure at {repo_name}/{package_xml_path}")
                 continue
-                
+
             # Get package.xml content from default branch
-            xml_content = self.github_client.get_file_content(owner, repo_name, package_xml_path, default_branch)
+            xml_content = self.github_client.get_file_content(
+                owner, repo_name, package_xml_path, default_branch)
             if not xml_content:
-                logger.warning(f"Could not read {repo_name}/{package_xml_path}")
+                logger.warning(
+                    f"Could not read {repo_name}/{package_xml_path}")
                 continue
-                
+
             # Extract package name
             package_name = self.extract_package_name_from_xml(xml_content)
             if not package_name:
-                logger.warning(f"Could not extract package name from {repo_name}/{package_xml_path}")
+                logger.warning(
+                    f"Could not extract package name from {repo_name}/{package_xml_path}")
                 continue
-                
+
             # Create ROS package object
             ros_package = ROSPackage(package_name, repo_name, package_xml_path)
             packages.append(ros_package)
-            
+
             logger.info(f"Found ROS package: {ros_package}")
-            
+
         return packages
-    
+
     def analyze_organization_repositories(self, org: str = 'haru-project', specific_repo: Optional[str] = None, existing_packages: Optional[Set[str]] = None) -> List[ROSPackage]:
         """
         Analyze all repositories in organization for ROS packages.
-        
+
         Args:
             org: Organization name
             specific_repo: Optional specific repository to analyze
             existing_packages: Set of package names already in rosdep.yaml (for filtering)
-            
+
         Returns:
             List of all discovered ROS packages
         """
         all_packages = []
-        
+
         if specific_repo:
             # Analyze specific repository
-            repo_data = self.github_client.get_specific_repository(org, specific_repo)
+            repo_data = self.github_client.get_specific_repository(
+                org, specific_repo)
             if repo_data:
                 packages = self.analyze_repository(repo_data)
                 all_packages.extend(packages)
             else:
-                logger.error(f"Repository {org}/{specific_repo} not found or not accessible")
+                logger.error(
+                    f"Repository {org}/{specific_repo} not found or not accessible")
         else:
             # Analyze all organization repositories in parallel
-            repositories = self.github_client.get_organization_repositories(org)
-            
+            repositories = self.github_client.get_organization_repositories(
+                org)
+
             if not repositories:
                 logger.warning(f"No repositories found in {org} organization")
                 return all_packages
-                
+
             # Optional heuristic filter (off by default to avoid skipping multi-package repos)
-            use_repo_name_filter = os.getenv("USE_REPO_NAME_FILTER", "false").lower() == "true"
+            use_repo_name_filter = os.getenv(
+                "USE_REPO_NAME_FILTER", "false").lower() == "true"
             if existing_packages and use_repo_name_filter:
-                repositories = self._filter_repositories_to_process(repositories, existing_packages)
-                
+                repositories = self._filter_repositories_to_process(
+                    repositories, existing_packages)
+
                 if not repositories:
-                    logger.info("All repositories appear to already be processed in rosdep.yaml")
+                    logger.info(
+                        "All repositories appear to already be processed in rosdep.yaml")
                     return all_packages
-                
-            logger.info(f"Starting parallel analysis of {len(repositories)} repositories with {self.max_workers} workers")
-            
+
+            logger.info(
+                f"Starting parallel analysis of {len(repositories)} repositories with {self.max_workers} workers")
+
             # Use ThreadPoolExecutor for parallel processing
             with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
                 # Submit all repository analysis tasks
                 future_to_repo = {
-                    executor.submit(self._analyze_repository_safe, repo): repo['name'] 
+                    executor.submit(self._analyze_repository_safe, repo): repo['name']
                     for repo in repositories
                 }
-                
+
                 # Process completed tasks
                 for future in as_completed(future_to_repo):
                     repo_name = future_to_repo[future]
                     try:
                         packages = future.result()
                         all_packages.extend(packages)
-                        logger.debug(f"Completed analysis of {repo_name}: {len(packages)} packages")
+                        logger.debug(
+                            f"Completed analysis of {repo_name}: {len(packages)} packages")
                     except Exception as e:
-                        logger.error(f"Error analyzing repository {repo_name}: {e}")
+                        logger.error(
+                            f"Error analyzing repository {repo_name}: {e}")
                         continue
-                        
-        logger.info(f"Parallel analysis complete. Found {len(all_packages)} ROS packages total")
+
+        logger.info(
+            f"Parallel analysis complete. Found {len(all_packages)} ROS packages total")
         return all_packages
-    
+
     def _filter_repositories_to_process(self, repositories: List[Dict], existing_packages: Set[str]) -> List[Dict]:
         """
         Filter repositories to skip those that likely already have packages in rosdep.yaml.
-        
+
         Args:
             repositories: List of repository dictionaries
             existing_packages: Set of package names already in rosdep.yaml
-            
+
         Returns:
             Filtered list of repositories to process
         """
         repos_to_process = []
         skipped_count = 0
-        
+
         for repo in repositories:
             repo_name = repo['name']
-            
+
             # Quick heuristic: check if repository name appears in any existing package names
             # This catches common patterns like "haru2_core" repo containing "haru2_core_msgs" package
             repo_appears_in_packages = any(
                 repo_name.lower() in pkg_name.lower() or pkg_name.lower() in repo_name.lower()
                 for pkg_name in existing_packages
             )
-            
+
             if repo_appears_in_packages:
-                logger.debug(f"Skipping repository {repo_name} (appears to already have packages in rosdep.yaml)")
+                logger.debug(
+                    f"Skipping repository {repo_name} (appears to already have packages in rosdep.yaml)")
                 skipped_count += 1
             else:
                 repos_to_process.append(repo)
-                
-        logger.info(f"Filtered repositories: processing {len(repos_to_process)}, skipped {skipped_count}")
+
+        logger.info(
+            f"Filtered repositories: processing {len(repos_to_process)}, skipped {skipped_count}")
         return repos_to_process
-    
+
     def _analyze_repository_safe(self, repository: Dict) -> List[ROSPackage]:
         """
         Thread-safe wrapper for analyze_repository with proper exception handling.
-        
+
         Args:
             repository: Repository dictionary from GitHub API
-            
+
         Returns:
             List of discovered ROS packages (empty list on error)
         """
@@ -311,21 +339,22 @@ class PackageAnalyzer:
             return self.analyze_repository(repository)
         except Exception as e:
             repo_name = repository.get('name', 'unknown')
-            logger.error(f"Exception in repository analysis for {repo_name}: {e}", exc_info=True)
+            logger.error(
+                f"Exception in repository analysis for {repo_name}: {e}", exc_info=True)
             return []
-    
+
     def get_unique_packages(self, packages: List[ROSPackage]) -> List[ROSPackage]:
         """
         Remove duplicate packages based on package name.
-        
+
         Args:
             packages: List of ROS packages
-            
+
         Returns:
             List of unique packages (latest by repository name)
         """
         unique_packages = {}
-        
+
         for package in packages:
             key = package.name
             if key not in unique_packages:
@@ -334,23 +363,24 @@ class PackageAnalyzer:
                 # Keep package from newer repository (by name)
                 if package.repository > unique_packages[key].repository:
                     unique_packages[key] = package
-                    logger.info(f"Replaced duplicate package {package.name}: {unique_packages[key].repository} -> {package.repository}")
-                    
+                    logger.info(
+                        f"Replaced duplicate package {package.name}: {unique_packages[key].repository} -> {package.repository}")
+
         return list(unique_packages.values())
 
 
 if __name__ == "__main__":
     # Test the package analyzer
     logging.basicConfig(level=logging.INFO)
-    
+
     from github_api import create_github_client
-    
+
     client = create_github_client()
     if client:
         # Use 3 workers for testing to avoid overwhelming API
         analyzer = PackageAnalyzer(client, max_workers=3)
         packages = analyzer.analyze_organization_repositories()
-        
+
         print(f"\nFound {len(packages)} ROS packages:")
         for package in packages:
             print(f"  {package}")
