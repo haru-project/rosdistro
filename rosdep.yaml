@@ -435,3 +435,711 @@ python3.10-dev:
 python3.10-venv:
   ubuntu:
     focal: [python3.10-venv]
+
+auto_release_repo_2:
+  ubuntu:
+    jammy:
+    - ros-humble-auto-release-repo-2
+    noble:
+    - ros-jazzy-auto-release-repo-2
+    - ros-kilted-auto-release-repo-2
+auto_release_repo_3:
+  ubuntu:
+    jammy:
+    - ros-humble-auto-release-repo-3
+    noble:
+    - ros-jazzy-auto-release-repo-3
+    - ros-kilted-auto-release-repo-3
+behavior_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-knowrob
+    noble:
+    - ros-jazzy-behavior-knowrob
+    - ros-kilted-behavior-knowrob
+behavior_tree_dialog:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tree-dialog
+    noble:
+    - ros-jazzy-behavior-tree-dialog
+    - ros-kilted-behavior-tree-dialog
+behavior_tree_hanoi:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tree-hanoi
+    noble:
+    - ros-jazzy-behavior-tree-hanoi
+    - ros-kilted-behavior-tree-hanoi
+behavior_tree_ipad:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tree-ipad
+    noble:
+    - ros-jazzy-behavior-tree-ipad
+    - ros-kilted-behavior-tree-ipad
+behavior_tree_telegram:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tree-telegram
+    noble:
+    - ros-jazzy-behavior-tree-telegram
+    - ros-kilted-behavior-tree-telegram
+behavior_tree_unity_projector:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tree-unity-projector
+    noble:
+    - ros-jazzy-behavior-tree-unity-projector
+    - ros-kilted-behavior-tree-unity-projector
+behavior_tts:
+  ubuntu:
+    jammy:
+    - ros-humble-behavior-tts
+    noble:
+    - ros-jazzy-behavior-tts
+    - ros-kilted-behavior-tts
+behaviortree_eut_plugins:
+  ubuntu:
+    jammy:
+    - ros-humble-behaviortree-eut-plugins
+    noble:
+    - ros-jazzy-behaviortree-eut-plugins
+    - ros-kilted-behaviortree-eut-plugins
+behaviortree_forest:
+  ubuntu:
+    jammy:
+    - ros-humble-behaviortree-forest
+    noble:
+    - ros-jazzy-behaviortree-forest
+    - ros-kilted-behaviortree-forest
+behaviortree_forest_interfaces:
+  ubuntu:
+    jammy:
+    - ros-humble-behaviortree-forest-interfaces
+    noble:
+    - ros-jazzy-behaviortree-forest-interfaces
+    - ros-kilted-behaviortree-forest-interfaces
+cerevoice_ros_standalone:
+  ubuntu:
+    jammy:
+    - ros-humble-cerevoice-ros-standalone
+    noble:
+    - ros-jazzy-cerevoice-ros-standalone
+    - ros-kilted-cerevoice-ros-standalone
+events_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-events-knowrob
+    noble:
+    - ros-jazzy-events-knowrob
+    - ros-kilted-events-knowrob
+haru_barcode_scanner:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-barcode-scanner
+    noble:
+    - ros-jazzy-haru-barcode-scanner
+    - ros-kilted-haru-barcode-scanner
+haru_belief:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-belief
+    noble:
+    - ros-jazzy-haru-belief
+    - ros-kilted-haru-belief
+haru_belief_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-belief-msgs
+    noble:
+    - ros-jazzy-haru-belief-msgs
+    - ros-kilted-haru-belief-msgs
+haru_drums_ros_driver:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-drums-ros-driver
+    noble:
+    - ros-jazzy-haru-drums-ros-driver
+    - ros-kilted-haru-drums-ros-driver
+haru_drums_ros_games:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-drums-ros-games
+    noble:
+    - ros-jazzy-haru-drums-ros-games
+    - ros-kilted-haru-drums-ros-games
+haru_empatica:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-empatica
+    noble:
+    - ros-jazzy-haru-empatica
+    - ros-kilted-haru-empatica
+haru_encouraging_mediator:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-encouraging-mediator
+    noble:
+    - ros-jazzy-haru-encouraging-mediator
+    - ros-kilted-haru-encouraging-mediator
+haru_encouraging_mediator_test:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-encouraging-mediator-test
+    noble:
+    - ros-jazzy-haru-encouraging-mediator-test
+    - ros-kilted-haru-encouraging-mediator-test
+haru_fusion_experiment:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-fusion-experiment
+    noble:
+    - ros-jazzy-haru-fusion-experiment
+    - ros-kilted-haru-fusion-experiment
+haru_hanoi_tower_driver:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-hanoi-tower-driver
+    noble:
+    - ros-jazzy-haru-hanoi-tower-driver
+    - ros-kilted-haru-hanoi-tower-driver
+haru_hospital_aeetc_demo:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-hospital-aeetc-demo
+    noble:
+    - ros-jazzy-haru-hospital-aeetc-demo
+    - ros-kilted-haru-hospital-aeetc-demo
+haru_interaction_manager:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-interaction-manager
+    noble:
+    - ros-jazzy-haru-interaction-manager
+    - ros-kilted-haru-interaction-manager
+haru_ist:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-ist
+    noble:
+    - ros-jazzy-haru-ist
+    - ros-kilted-haru-ist
+haru_jankenpon:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-jankenpon
+    noble:
+    - ros-jazzy-haru-jankenpon
+    - ros-kilted-haru-jankenpon
+haru_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-knowrob
+    noble:
+    - ros-jazzy-haru-knowrob
+    - ros-kilted-haru-knowrob
+haru_knowrob_visualization:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-knowrob-visualization
+    noble:
+    - ros-jazzy-haru-knowrob-visualization
+    - ros-kilted-haru-knowrob-visualization
+haru_llm:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-llm
+    noble:
+    - ros-jazzy-haru-llm
+    - ros-kilted-haru-llm
+haru_nlp_api:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-nlp-api
+    noble:
+    - ros-jazzy-haru-nlp-api
+    - ros-kilted-haru-nlp-api
+haru_nlp_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-nlp-msgs
+    noble:
+    - ros-jazzy-haru-nlp-msgs
+    - ros-kilted-haru-nlp-msgs
+haru_questionnaire:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-questionnaire
+    noble:
+    - ros-jazzy-haru-questionnaire
+    - ros-kilted-haru-questionnaire
+haru_reception:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-reception
+    noble:
+    - ros-jazzy-haru-reception
+    - ros-kilted-haru-reception
+haru_saliency:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-saliency
+    noble:
+    - ros-jazzy-haru-saliency
+    - ros-kilted-haru-saliency
+haru_shiritori:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-shiritori
+    noble:
+    - ros-jazzy-haru-shiritori
+    - ros-kilted-haru-shiritori
+haru_simulator:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-simulator
+    noble:
+    - ros-jazzy-haru-simulator
+    - ros-kilted-haru-simulator
+haru_simulator_dev:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-simulator-dev
+    noble:
+    - ros-jazzy-haru-simulator-dev
+    - ros-kilted-haru-simulator-dev
+haru_smalltalk_demo:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-smalltalk-demo
+    noble:
+    - ros-jazzy-haru-smalltalk-demo
+    - ros-kilted-haru-smalltalk-demo
+haru_speech:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-speech
+    noble:
+    - ros-jazzy-haru-speech
+    - ros-kilted-haru-speech
+haru_storytelling:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-storytelling
+    noble:
+    - ros-jazzy-haru-storytelling
+    - ros-kilted-haru-storytelling
+haru_stress_tests:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-stress-tests
+    noble:
+    - ros-jazzy-haru-stress-tests
+    - ros-kilted-haru-stress-tests
+haru_test_runners:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-test-runners
+    noble:
+    - ros-jazzy-haru-test-runners
+    - ros-kilted-haru-test-runners
+haru_test_runners_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-test-runners-msgs
+    noble:
+    - ros-jazzy-haru-test-runners-msgs
+    - ros-kilted-haru-test-runners-msgs
+haru_text_recognition:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-text-recognition
+    noble:
+    - ros-jazzy-haru-text-recognition
+    - ros-kilted-haru-text-recognition
+haruscope_demo:
+  ubuntu:
+    jammy:
+    - ros-humble-haruscope-demo
+    noble:
+    - ros-jazzy-haruscope-demo
+    - ros-kilted-haruscope-demo
+hri_face:
+  ubuntu:
+    jammy:
+    - ros-humble-hri-face
+    noble:
+    - ros-jazzy-hri-face
+    - ros-kilted-hri-face
+idmind_tabletop_launch:
+  ubuntu:
+    jammy:
+    - ros-humble-idmind-tabletop-launch
+    noble:
+    - ros-jazzy-idmind-tabletop-launch
+    - ros-kilted-idmind-tabletop-launch
+idmind_tabletop_leds_sample:
+  ubuntu:
+    jammy:
+    - ros-humble-idmind-tabletop-leds-sample
+    noble:
+    - ros-jazzy-idmind-tabletop-leds-sample
+    - ros-kilted-idmind-tabletop-leds-sample
+idmind_tabletop_marker_sync:
+  ubuntu:
+    jammy:
+    - ros-humble-idmind-tabletop-marker-sync
+    noble:
+    - ros-jazzy-idmind-tabletop-marker-sync
+    - ros-kilted-idmind-tabletop-marker-sync
+idmind_tabletop_saliency:
+  ubuntu:
+    jammy:
+    - ros-humble-idmind-tabletop-saliency
+    noble:
+    - ros-jazzy-idmind-tabletop-saliency
+    - ros-kilted-idmind-tabletop-saliency
+idmind_tabletop_website:
+  ubuntu:
+    jammy:
+    - ros-humble-idmind-tabletop-website
+    noble:
+    - ros-jazzy-idmind-tabletop-website
+    - ros-kilted-idmind-tabletop-website
+imitation_game:
+  ubuntu:
+    jammy:
+    - ros-humble-imitation-game
+    noble:
+    - ros-jazzy-imitation-game
+    - ros-kilted-imitation-game
+libwrapper:
+  ubuntu:
+    jammy:
+    - ros-humble-libwrapper
+    noble:
+    - ros-jazzy-libwrapper
+    - ros-kilted-libwrapper
+nlohmann_json:
+  ubuntu:
+    jammy:
+    - ros-humble-nlohmann-json
+    noble:
+    - ros-jazzy-nlohmann-json
+    - ros-kilted-nlohmann-json
+opencv_apps:
+  ubuntu:
+    jammy:
+    - ros-humble-opencv-apps
+    noble:
+    - ros-jazzy-opencv-apps
+    - ros-kilted-opencv-apps
+openface2_ros:
+  ubuntu:
+    jammy:
+    - ros-humble-openface2-ros
+    noble:
+    - ros-jazzy-openface2-ros
+    - ros-kilted-openface2-ros
+orbbec_camera:
+  ubuntu:
+    jammy:
+    - ros-humble-orbbec-camera
+    noble:
+    - ros-jazzy-orbbec-camera
+    - ros-kilted-orbbec-camera
+orbbec_camera_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-orbbec-camera-msgs
+    noble:
+    - ros-jazzy-orbbec-camera-msgs
+    - ros-kilted-orbbec-camera-msgs
+orbbec_description:
+  ubuntu:
+    jammy:
+    - ros-humble-orbbec-description
+    noble:
+    - ros-jazzy-orbbec-description
+    - ros-kilted-orbbec-description
+perception_pipeline_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-perception-pipeline-msgs
+    noble:
+    - ros-jazzy-perception-pipeline-msgs
+    - ros-kilted-perception-pipeline-msgs
+photobooth_demo:
+  ubuntu:
+    jammy:
+    - ros-humble-photobooth-demo
+    noble:
+    - ros-jazzy-photobooth-demo
+    - ros-kilted-photobooth-demo
+queries_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-queries-knowrob
+    noble:
+    - ros-jazzy-queries-knowrob
+    - ros-kilted-queries-knowrob
+ros2_template:
+  ubuntu:
+    jammy:
+    - ros-humble-ros2-template
+    noble:
+    - ros-jazzy-ros2-template
+    - ros-kilted-ros2-template
+ros_pound:
+  ubuntu:
+    jammy:
+    - ros-humble-ros-pound
+    noble:
+    - ros-jazzy-ros-pound
+    - ros-kilted-ros-pound
+ros_translate:
+  ubuntu:
+    jammy:
+    - ros-humble-ros-translate
+    noble:
+    - ros-jazzy-ros-translate
+    - ros-kilted-ros-translate
+ros_tts_coquiai:
+  ubuntu:
+    jammy:
+    - ros-humble-ros-tts-coquiai
+    noble:
+    - ros-jazzy-ros-tts-coquiai
+    - ros-kilted-ros-tts-coquiai
+rosprolog_helpers:
+  ubuntu:
+    jammy:
+    - ros-humble-rosprolog-helpers
+    noble:
+    - ros-jazzy-rosprolog-helpers
+    - ros-kilted-rosprolog-helpers
+serial:
+  ubuntu:
+    jammy:
+    - ros-humble-serial
+    noble:
+    - ros-jazzy-serial
+    - ros-kilted-serial
+skills_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-skills-knowrob
+    noble:
+    - ros-jazzy-skills-knowrob
+    - ros-kilted-skills-knowrob
+strawberry-ros-attention-estimator:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-attention-estimator
+    noble:
+    - ros-jazzy-strawberry-ros-attention-estimator
+    - ros-kilted-strawberry-ros-attention-estimator
+strawberry-ros-local-asr:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-local-asr
+    noble:
+    - ros-jazzy-strawberry-ros-local-asr
+    - ros-kilted-strawberry-ros-local-asr
+strawberry_interactions_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-interactions-knowrob
+    noble:
+    - ros-jazzy-strawberry-interactions-knowrob
+    - ros-kilted-strawberry-interactions-knowrob
+strawberry_knowrob:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-knowrob
+    noble:
+    - ros-jazzy-strawberry-knowrob
+    - ros-kilted-strawberry-knowrob
+strawberry_people_temporary_bridge:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-people-temporary-bridge
+    noble:
+    - ros-jazzy-strawberry-people-temporary-bridge
+    - ros-kilted-strawberry-people-temporary-bridge
+strawberry_resource_monitor:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-resource-monitor
+    noble:
+    - ros-jazzy-strawberry-resource-monitor
+    - ros-kilted-strawberry-resource-monitor
+strawberry_ros_av_classifier:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-av-classifier
+    noble:
+    - ros-jazzy-strawberry-ros-av-classifier
+    - ros-kilted-strawberry-ros-av-classifier
+strawberry_ros_body_gestures:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-body-gestures
+    noble:
+    - ros-jazzy-strawberry-ros-body-gestures
+    - ros-kilted-strawberry-ros-body-gestures
+strawberry_ros_body_interruption_detection:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-body-interruption-detection
+    noble:
+    - ros-jazzy-strawberry-ros-body-interruption-detection
+    - ros-kilted-strawberry-ros-body-interruption-detection
+strawberry_ros_emotion_classifier:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-emotion-classifier
+    noble:
+    - ros-jazzy-strawberry-ros-emotion-classifier
+    - ros-kilted-strawberry-ros-emotion-classifier
+strawberry_ros_empathy:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-empathy
+    noble:
+    - ros-jazzy-strawberry-ros-empathy
+    - ros-kilted-strawberry-ros-empathy
+strawberry_ros_empatica:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-empatica
+    noble:
+    - ros-jazzy-strawberry-ros-empatica
+    - ros-kilted-strawberry-ros-empatica
+strawberry_ros_f_formation:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-f-formation
+    noble:
+    - ros-jazzy-strawberry-ros-f-formation
+    - ros-kilted-strawberry-ros-f-formation
+strawberry_ros_interactions:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-interactions
+    noble:
+    - ros-jazzy-strawberry-ros-interactions
+    - ros-kilted-strawberry-ros-interactions
+strawberry_ros_kinect:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-kinect
+    noble:
+    - ros-jazzy-strawberry-ros-kinect
+    - ros-kilted-strawberry-ros-kinect
+strawberry_ros_lips_detector:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-lips-detector
+    noble:
+    - ros-jazzy-strawberry-ros-lips-detector
+    - ros-kilted-strawberry-ros-lips-detector
+strawberry_ros_skeletons:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-skeletons
+    noble:
+    - ros-jazzy-strawberry-ros-skeletons
+    - ros-kilted-strawberry-ros-skeletons
+strawberry_ros_sound_localization:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-sound-localization
+    noble:
+    - ros-jazzy-strawberry-ros-sound-localization
+    - ros-kilted-strawberry-ros-sound-localization
+strawberry_ros_tts_gpt:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-tts-gpt
+    noble:
+    - ros-jazzy-strawberry-ros-tts-gpt
+    - ros-kilted-strawberry-ros-tts-gpt
+strawberry_ros_turntaking:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-turntaking
+    noble:
+    - ros-jazzy-strawberry-ros-turntaking
+    - ros-kilted-strawberry-ros-turntaking
+strawberry_ros_usb_cam:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-usb-cam
+    noble:
+    - ros-jazzy-strawberry-ros-usb-cam
+    - ros-kilted-strawberry-ros-usb-cam
+strawberry_ros_voice_id:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-ros-voice-id
+    noble:
+    - ros-jazzy-strawberry-ros-voice-id
+    - ros-kilted-strawberry-ros-voice-id
+strawberry_tts_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-tts-msgs
+    noble:
+    - ros-jazzy-strawberry-tts-msgs
+    - ros-kilted-strawberry-tts-msgs
+strawberry_tts_ros:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-tts-ros
+    noble:
+    - ros-jazzy-strawberry-tts-ros
+    - ros-kilted-strawberry-tts-ros
+strawberry_video_streamer:
+  ubuntu:
+    jammy:
+    - ros-humble-strawberry-video-streamer
+    noble:
+    - ros-jazzy-strawberry-video-streamer
+    - ros-kilted-strawberry-video-streamer
+test_idmind_tabletop_audio_layer:
+  ubuntu:
+    jammy:
+    - ros-humble-test-idmind-tabletop-audio-layer
+    noble:
+    - ros-jazzy-test-idmind-tabletop-audio-layer
+    - ros-kilted-test-idmind-tabletop-audio-layer
+text_based_expressivity_generation:
+  ubuntu:
+    jammy:
+    - ros-humble-text-based-expressivity-generation
+    noble:
+    - ros-jazzy-text-based-expressivity-generation
+    - ros-kilted-text-based-expressivity-generation
+unity-dialog:
+  ubuntu:
+    jammy:
+    - ros-humble-unity-dialog
+    noble:
+    - ros-jazzy-unity-dialog
+    - ros-kilted-unity-dialog
+vllm_features:
+  ubuntu:
+    jammy:
+    - ros-humble-vllm-features
+    noble:
+    - ros-jazzy-vllm-features
+    - ros-kilted-vllm-features
+vlm_detections:
+  ubuntu:
+    jammy:
+    - ros-humble-vlm-detections
+    noble:
+    - ros-jazzy-vlm-detections
+    - ros-kilted-vlm-detections
