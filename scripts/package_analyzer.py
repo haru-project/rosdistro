@@ -101,7 +101,14 @@ class PackageAnalyzer:
             
         return None
     
-    def validate_ros_package_structure(self, owner: str, repo: str, package_xml_path: str, ref: str = None) -> bool:
+    def validate_ros_package_structure(
+        self,
+        owner: str,
+        repo: str,
+        package_xml_path: str,
+        ref: str = None,
+        tree_paths: Optional[Set[str]] = None,
+    ) -> bool:
         """
         Validate that the directory contains required ROS package files.
         
@@ -120,13 +127,17 @@ class PackageAnalyzer:
         # Check for CMakeLists.txt in the same directory
         cmake_path = os.path.join(package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
         
-        # Get directory contents from default branch
-        contents = self.github_client.get_repository_contents(owner, repo, package_dir, ref)
-        if not contents:
-            return False
-            
-        # Look for required files
-        has_cmake = any(item['name'] == 'CMakeLists.txt' for item in contents if item['type'] == 'file')
+        if tree_paths is not None:
+            cmake_path = os.path.join(package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
+            has_cmake = cmake_path in tree_paths
+        else:
+            # Get directory contents from default branch
+            contents = self.github_client.get_repository_contents(owner, repo, package_dir, ref)
+            if not contents:
+                return False
+                
+            # Look for required files
+            has_cmake = any(item['name'] == 'CMakeLists.txt' for item in contents if item['type'] == 'file')
         
         if not has_cmake:
             logger.debug(f"No CMakeLists.txt found in {owner}/{repo}/{package_dir}")
@@ -151,8 +162,12 @@ class PackageAnalyzer:
         
         logger.info(f"Analyzing repository: {owner}/{repo_name} (default branch: {default_branch})")
         
-        # Find all package.xml files recursively using default branch for efficiency
-        package_xml_files = self.github_client.find_package_xml_files(owner, repo_name, '', default_branch)
+        tree_paths = self.github_client.get_repository_tree_paths(owner, repo_name, default_branch)
+        if tree_paths is not None:
+            package_xml_files = [path for path in tree_paths if path.endswith('package.xml')]
+        else:
+            # Find all package.xml files recursively using default branch for efficiency
+            package_xml_files = self.github_client.find_package_xml_files(owner, repo_name, '', default_branch)
         
         if not package_xml_files:
             logger.debug(f"No package.xml files found in {owner}/{repo_name}")
@@ -162,7 +177,7 @@ class PackageAnalyzer:
         
         for package_xml_path in package_xml_files:
             # Validate ROS package structure
-            if not self.validate_ros_package_structure(owner, repo_name, package_xml_path, default_branch):
+            if not self.validate_ros_package_structure(owner, repo_name, package_xml_path, default_branch, tree_paths):
                 logger.warning(f"Invalid ROS package structure at {repo_name}/{package_xml_path}")
                 continue
                 

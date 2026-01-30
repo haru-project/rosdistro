@@ -7,7 +7,7 @@ import os
 import sys
 import logging
 from typing import Optional, List
-from github_api import create_github_client
+from github_api import create_github_client, RateLimitError
 from package_analyzer import PackageAnalyzer
 from rosdep_updater import update_rosdep_with_packages
 
@@ -112,6 +112,13 @@ def main():
             logger.error("Automation completed with errors")
             sys.exit(1)
             
+    except RateLimitError as e:
+        if e.reset_epoch:
+            from datetime import datetime, timezone
+            reset_time = datetime.fromtimestamp(e.reset_epoch, tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S UTC')
+            logger.error(f"GitHub API rate limit exceeded. Reset at {reset_time}.")
+        logger.error(str(e))
+        sys.exit(1)
     except Exception as e:
         error_msg = f"Automation failed with exception: {e}"
         logger.error(error_msg, exc_info=True)

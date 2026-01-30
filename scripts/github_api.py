@@ -6,9 +6,17 @@ GitHub API interactions for haru-project organization repository scanning.
 import os
 import requests
 import logging
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Set
 
 logger = logging.getLogger(__name__)
+
+
+class RateLimitError(RuntimeError):
+    """Raised when GitHub API rate limit is exceeded."""
+
+    def __init__(self, message: str, reset_epoch: Optional[int] = None):
+        super().__init__(message)
+        self.reset_epoch = reset_epoch
 
 
 class GitHubAPI:
@@ -26,9 +34,35 @@ class GitHubAPI:
             self.headers['Authorization'] = f'token {token}'
         self.base_url = 'https://api.github.com'
 
+    def _is_rate_limited(self, response: requests.Response) -> bool:
+        if response.status_code not in (403, 429):
+            return False
+        remaining = response.headers.get('X-RateLimit-Remaining')
+        if remaining == '0':
+            return True
+        try:
+            message = response.json().get('message', '').lower()
+        except Exception:
+            message = response.text.lower()
+        return 'rate limit exceeded' in message or 'too many requests' in message
+
+    def _raise_rate_limit(self, response: requests.Response, context: str) -> None:
+        reset = response.headers.get('X-RateLimit-Reset')
+        reset_epoch = int(reset) if reset and reset.isdigit() else None
+        message = None
+        try:
+            message = response.json().get('message')
+        except Exception:
+            message = response.text.strip() or None
+        detail = message or 'API rate limit exceeded'
+        raise RateLimitError(f"{context}: {detail}", reset_epoch=reset_epoch)
+
     def _request(self, url: str, params: Optional[Dict] = None, use_auth: bool = True) -> requests.Response:
         headers = self.headers if (use_auth and self.token) else self.public_headers
-        return requests.get(url, headers=headers, params=params, timeout=30)
+        response = requests.get(url, headers=headers, params=params, timeout=30)
+        if self._is_rate_limited(response):
+            self._raise_rate_limit(response, f"Rate limit hit for {url}")
+        return response
 
     def _log_forbidden(self, response: requests.Response, context: str) -> None:
         message = None
@@ -243,6 +277,35 @@ class GitHubAPI:
             
         except requests.RequestException as e:
             logger.warning(f"Error fetching repository {owner}/{repo}: {e}")
+            return None
+
+    def get_repository_tree_paths(self, owner: str, repo: str, ref: str) -> Optional[Set[str]]:
+        """
+        Get all file paths in a repository via git tree API.
+
+        Args:
+            owner: Repository owner
+            repo: Repository name
+            ref: Git reference (branch name or SHA)
+
+        Returns:
+            Set of file paths or None if error
+        """
+        url = f"{self.base_url}/repos/{owner}/{repo}/git/trees/{ref}"
+        params = {'recursive': '1'}
+        try:
+            response = self._request(url, params=params, use_auth=True)
+            if response.status_code in (401, 403) and self.token:
+                self._log_forbidden(response, f"Error fetching tree for {owner}/{repo}")
+                response = self._request(url, params=params, use_auth=False)
+            response.raise_for_status()
+            data = response.json()
+            if data.get('truncated'):
+                logger.warning(f"Tree listing truncated for {owner}/{repo} at {ref}")
+            tree = data.get('tree', [])
+            return {item['path'] for item in tree if item.get('type') == 'blob' and 'path' in item}
+        except requests.RequestException as e:
+            logger.warning(f"Error fetching tree for {owner}/{repo} at {ref}: {e}")
             return None
 
 
