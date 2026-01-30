@@ -1243,3 +1243,11 @@ zzviz:
     noble:
     - ros-jazzy-zzviz
     - ros-kilted-zzviz
+
+rosx_introspection:
+  ubuntu:
+    jammy:
+    - ros-humble-rosx-introspection
+    noble:
+    - ros-jazzy-rosx-introspection
+    - ros-kilted-rosx-introspection
