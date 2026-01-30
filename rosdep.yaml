@@ -269,6 +269,7 @@ behavior_tree_cpp:
     bionic: [ros-melodic-behavior-tree-cpp]
     focal: [ros-noetic-behavior-tree-cpp]
     xenial: [ros-kinetic-behavior-tree-cpp]
+    noble: [ros-jazzy-behavior-tree-cpp]
 behavior_tree_haru:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-haru]
