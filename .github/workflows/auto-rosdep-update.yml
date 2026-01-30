@@ -5,8 +5,8 @@ on:
         types: [repository_created]
 
     schedule:
-        # Run every 30 minutes as fallback
-        - cron: "*/30 * * * *"
+        # Run daily at 2 AM UTC
+        - cron: "0 2 * * *"
 
     workflow_dispatch:
         inputs:

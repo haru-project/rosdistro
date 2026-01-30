@@ -70,7 +70,7 @@ class GitHubAPI:
         logger.info(f"Found {len(repositories)} repositories in {org} organization")
         return repositories
     
-    def get_repository_contents(self, owner: str, repo: str, path: str = '') -> Optional[List[Dict]]:
+    def get_repository_contents(self, owner: str, repo: str, path: str = '', ref: str = None) -> Optional[List[Dict]]:
         """
         Get repository contents at specified path.
         
@@ -78,14 +78,18 @@ class GitHubAPI:
             owner: Repository owner
             repo: Repository name  
             path: Path within repository
+            ref: Git reference (defaults to default branch for efficiency)
             
         Returns:
             List of content items or None if error
         """
         url = f"{self.base_url}/repos/{owner}/{repo}/contents/{path}"
+        params = {}
+        if ref:
+            params['ref'] = ref
         
         try:
-            response = requests.get(url, headers=self.headers)
+            response = requests.get(url, headers=self.headers, params=params)
             response.raise_for_status()
             return response.json()
             
@@ -93,7 +97,7 @@ class GitHubAPI:
             logger.warning(f"Error fetching contents from {owner}/{repo} at {path}: {e}")
             return None
     
-    def get_file_content(self, owner: str, repo: str, path: str) -> Optional[str]:
+    def get_file_content(self, owner: str, repo: str, path: str, ref: str = None) -> Optional[str]:
         """
         Get file content from repository.
         
@@ -101,14 +105,18 @@ class GitHubAPI:
             owner: Repository owner
             repo: Repository name
             path: File path
+            ref: Git reference (defaults to default branch for efficiency)
             
         Returns:
             File content as string or None if error
         """
         url = f"{self.base_url}/repos/{owner}/{repo}/contents/{path}"
+        params = {}
+        if ref:
+            params['ref'] = ref
         
         try:
-            response = requests.get(url, headers=self.headers)
+            response = requests.get(url, headers=self.headers, params=params)
             response.raise_for_status()
             
             content_data = response.json()
@@ -122,7 +130,7 @@ class GitHubAPI:
             
         return None
     
-    def find_package_xml_files(self, owner: str, repo: str, path: str = '') -> List[str]:
+    def find_package_xml_files(self, owner: str, repo: str, path: str = '', ref: str = None) -> List[str]:
         """
         Recursively find all package.xml files in repository.
         
@@ -130,13 +138,14 @@ class GitHubAPI:
             owner: Repository owner
             repo: Repository name
             path: Starting path for search
+            ref: Git reference (defaults to default branch)
             
         Returns:
             List of package.xml file paths
         """
         package_files = []
         
-        contents = self.get_repository_contents(owner, repo, path)
+        contents = self.get_repository_contents(owner, repo, path, ref)
         if not contents:
             return package_files
             
@@ -147,7 +156,7 @@ class GitHubAPI:
                 
             elif item['type'] == 'dir':
                 # Recursively search directories
-                subdir_files = self.find_package_xml_files(owner, repo, item['path'])
+                subdir_files = self.find_package_xml_files(owner, repo, item['path'], ref)
                 package_files.extend(subdir_files)
                 
         return package_files
