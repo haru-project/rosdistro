@@ -231,13 +231,14 @@ class PackageAnalyzer:
                 logger.warning(f"No repositories found in {org} organization")
                 return all_packages
                 
-            # Filter repositories that might already be processed
-            if existing_packages:
+            # Optional heuristic filter (off by default to avoid skipping multi-package repos)
+            use_repo_name_filter = os.getenv("USE_REPO_NAME_FILTER", "false").lower() == "true"
+            if existing_packages and use_repo_name_filter:
                 repositories = self._filter_repositories_to_process(repositories, existing_packages)
                 
-            if not repositories:
-                logger.info("All repositories appear to already be processed in rosdep.yaml")
-                return all_packages
+                if not repositories:
+                    logger.info("All repositories appear to already be processed in rosdep.yaml")
+                    return all_packages
                 
             logger.info(f"Starting parallel analysis of {len(repositories)} repositories with {self.max_workers} workers")
             
