@@ -186,13 +186,14 @@ class PackageAnalyzer:
             
         return packages
     
-    def analyze_organization_repositories(self, org: str = 'haru-project', specific_repo: Optional[str] = None) -> List[ROSPackage]:
+    def analyze_organization_repositories(self, org: str = 'haru-project', specific_repo: Optional[str] = None, existing_packages: Optional[Set[str]] = None) -> List[ROSPackage]:
         """
         Analyze all repositories in organization for ROS packages.
         
         Args:
             org: Organization name
             specific_repo: Optional specific repository to analyze
+            existing_packages: Set of package names already in rosdep.yaml (for filtering)
             
         Returns:
             List of all discovered ROS packages
@@ -213,6 +214,14 @@ class PackageAnalyzer:
             
             if not repositories:
                 logger.warning(f"No repositories found in {org} organization")
+                return all_packages
+                
+            # Filter repositories that might already be processed
+            if existing_packages:
+                repositories = self._filter_repositories_to_process(repositories, existing_packages)
+                
+            if not repositories:
+                logger.info("All repositories appear to already be processed in rosdep.yaml")
                 return all_packages
                 
             logger.info(f"Starting parallel analysis of {len(repositories)} repositories with {self.max_workers} workers")
@@ -238,6 +247,39 @@ class PackageAnalyzer:
                         
         logger.info(f"Parallel analysis complete. Found {len(all_packages)} ROS packages total")
         return all_packages
+    
+    def _filter_repositories_to_process(self, repositories: List[Dict], existing_packages: Set[str]) -> List[Dict]:
+        """
+        Filter repositories to skip those that likely already have packages in rosdep.yaml.
+        
+        Args:
+            repositories: List of repository dictionaries
+            existing_packages: Set of package names already in rosdep.yaml
+            
+        Returns:
+            Filtered list of repositories to process
+        """
+        repos_to_process = []
+        skipped_count = 0
+        
+        for repo in repositories:
+            repo_name = repo['name']
+            
+            # Quick heuristic: check if repository name appears in any existing package names
+            # This catches common patterns like "haru2_core" repo containing "haru2_core_msgs" package
+            repo_appears_in_packages = any(
+                repo_name.lower() in pkg_name.lower() or pkg_name.lower() in repo_name.lower()
+                for pkg_name in existing_packages
+            )
+            
+            if repo_appears_in_packages:
+                logger.debug(f"Skipping repository {repo_name} (appears to already have packages in rosdep.yaml)")
+                skipped_count += 1
+            else:
+                repos_to_process.append(repo)
+                
+        logger.info(f"Filtered repositories: processing {len(repos_to_process)}, skipped {skipped_count}")
+        return repos_to_process
     
     def _analyze_repository_safe(self, repository: Dict) -> List[ROSPackage]:
         """

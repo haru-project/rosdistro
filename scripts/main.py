@@ -57,12 +57,19 @@ def main():
         
         # Analyze repositories for ROS packages
         logger.info("Scanning repositories for ROS packages...")
+        
+        # Get existing packages from rosdep.yaml for filtering
+        from rosdep_updater import ROSDepUpdater
+        rosdep_updater = ROSDepUpdater('rosdep.yaml')
+        existing_packages = rosdep_updater.get_existing_packages()
+        logger.info(f"Found {len(existing_packages)} existing packages in rosdep.yaml")
+        
         if repository_name:
             logger.info(f"Analyzing specific repository: {repository_name}")
-            packages = analyzer.analyze_organization_repositories(specific_repo=repository_name)
+            packages = analyzer.analyze_organization_repositories(specific_repo=repository_name, existing_packages=existing_packages)
         else:
             logger.info("Analyzing all haru-project repositories")
-            packages = analyzer.analyze_organization_repositories()
+            packages = analyzer.analyze_organization_repositories(existing_packages=existing_packages)
         
         if not packages:
             logger.info("No ROS packages found")
