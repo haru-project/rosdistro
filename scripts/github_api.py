@@ -14,15 +14,35 @@ logger = logging.getLogger(__name__)
 class GitHubAPI:
     """GitHub API client for organization repository management."""
     
-    def __init__(self, token: str):
+    def __init__(self, token: Optional[str]):
         """Initialize with GitHub token."""
         self.token = token
-        self.headers = {
-            'Authorization': f'token {token}',
+        self.public_headers = {
             'Accept': 'application/vnd.github.v3+json',
             'User-Agent': 'haru-project-rosdep-automation'
         }
+        self.headers = dict(self.public_headers)
+        if token:
+            self.headers['Authorization'] = f'token {token}'
         self.base_url = 'https://api.github.com'
+
+    def _request(self, url: str, params: Optional[Dict] = None, use_auth: bool = True) -> requests.Response:
+        headers = self.headers if (use_auth and self.token) else self.public_headers
+        return requests.get(url, headers=headers, params=params, timeout=30)
+
+    def _log_forbidden(self, response: requests.Response, context: str) -> None:
+        message = None
+        try:
+            message = response.json().get('message')
+        except Exception:
+            message = response.text.strip() or None
+        remaining = response.headers.get('X-RateLimit-Remaining')
+        reset = response.headers.get('X-RateLimit-Reset')
+        suffix = f" (rate limit remaining={remaining}, reset={reset})" if remaining is not None else ""
+        if message:
+            logger.error(f"{context}: {response.status_code} {message}{suffix}")
+        else:
+            logger.error(f"{context}: {response.status_code} Forbidden{suffix}")
         
     def get_organization_repositories(self, org: str = 'haru-project') -> List[Dict]:
         """
@@ -48,8 +68,18 @@ class GitHubAPI:
             }
             
             try:
-                response = requests.get(url, headers=self.headers, params=params)
-                response.raise_for_status()
+                response = self._request(url, params=params, use_auth=True)
+                if response.status_code in (401, 403):
+                    self._log_forbidden(response, f"Error fetching repositories from {org}")
+                    if self.token:
+                        logger.warning("Falling back to public repositories only (unauthenticated request).")
+                        params_public = dict(params)
+                        params_public['type'] = 'public'
+                        response = self._request(url, params=params_public, use_auth=False)
+                    if response.status_code in (401, 403):
+                        response.raise_for_status()
+                else:
+                    response.raise_for_status()
                 
                 repos = response.json()
                 if not repos:
@@ -89,7 +119,10 @@ class GitHubAPI:
             params['ref'] = ref
         
         try:
-            response = requests.get(url, headers=self.headers, params=params)
+            response = self._request(url, params=params, use_auth=True)
+            if response.status_code in (401, 403) and self.token:
+                self._log_forbidden(response, f"Error fetching contents from {owner}/{repo} at {path}")
+                response = self._request(url, params=params, use_auth=False)
             response.raise_for_status()
             return response.json()
             
@@ -116,7 +149,10 @@ class GitHubAPI:
             params['ref'] = ref
         
         try:
-            response = requests.get(url, headers=self.headers, params=params)
+            response = self._request(url, params=params, use_auth=True)
+            if response.status_code in (401, 403) and self.token:
+                self._log_forbidden(response, f"Error fetching file {owner}/{repo}/{path}")
+                response = self._request(url, params=params, use_auth=False)
             response.raise_for_status()
             
             content_data = response.json()
@@ -175,7 +211,10 @@ class GitHubAPI:
         url = f"{self.base_url}/repos/{owner}/{repo}"
         
         try:
-            response = requests.get(url, headers=self.headers)
+            response = self._request(url, use_auth=True)
+            if response.status_code in (401, 403) and self.token:
+                self._log_forbidden(response, f"Error checking repository {owner}/{repo}")
+                response = self._request(url, use_auth=False)
             return response.status_code == 200
             
         except requests.RequestException:
@@ -195,7 +234,10 @@ class GitHubAPI:
         url = f"{self.base_url}/repos/{owner}/{repo}"
         
         try:
-            response = requests.get(url, headers=self.headers)
+            response = self._request(url, use_auth=True)
+            if response.status_code in (401, 403) and self.token:
+                self._log_forbidden(response, f"Error fetching repository {owner}/{repo}")
+                response = self._request(url, use_auth=False)
             response.raise_for_status()
             return response.json()
             
@@ -206,7 +248,12 @@ class GitHubAPI:
 
 def create_github_client() -> Optional[GitHubAPI]:
     """Create GitHub API client from environment."""
-    token = os.getenv('GITHUB_TOKEN')
+    token = (
+        os.getenv('ROSDEP_GITHUB_TOKEN')
+        or os.getenv('GITHUB_ORG_TOKEN')
+        or os.getenv('GH_TOKEN')
+        or os.getenv('GITHUB_TOKEN')
+    )
     if not token:
         logger.error("GITHUB_TOKEN environment variable not set")
         return None
