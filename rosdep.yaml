@@ -1135,3 +1135,10 @@ rosx_introspection:
     - ros-humble-rosx-introspection
     noble:
     - ros-jazzy-rosx-introspection
+
+haru_recorder:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-recorder
+    noble:
+    - ros-jazzy-haru-recorder
