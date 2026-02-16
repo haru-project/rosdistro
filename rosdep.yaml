@@ -45,6 +45,7 @@ haru_ipad_action_server:
 haru_ipad_msgs:
   ubuntu:
     focal: [ros-noetic-haru-ipad-msgs]
+    noble: [ros-jazzy-haru-ipad-msgs]
 haru_smalltalk_utils:
   ubuntu:
     xenial: [ros-kinetic-haru-smalltalk-utils]
