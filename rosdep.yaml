@@ -367,6 +367,8 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+alsa-utils:
+  ubuntu: [alsa-utils]
 libgl1:
   ubuntu: [libgl1]
 ffmpeg:
