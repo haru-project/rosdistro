@@ -372,6 +372,10 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+libqt5svg5-dev:
+  ubuntu: [libqt5svg5-dev]
+qtbase5-dev:
+  ubuntu: [qtbase5-dev]
 xmllint:
   ubuntu: [libxml2-dev]
 alsa-utils:
