@@ -250,21 +250,25 @@ idmind_tabletop_ros_woz:
 groot:
   ubuntu:
     focal: [ros-noetic-groot]
+    noble: [ros-jazzy-groot]
 behavior_tree_core:
   ubuntu:
     xenial: [ros-kinetic-behavior-tree-core]
     bionic: [ros-melodic-behavior-tree-core]
     focal: [ros-noetic-behavior-tree-core]
+    noble: [ros-jazzy-behavior-tree-core]
 behavior_tree_ros:
   ubuntu:
     xenial: [ros-kinetic-behavior-tree-ros]
     bionic: [ros-melodic-behavior-tree-ros]
     focal: [ros-noetic-behavior-tree-ros]
+    noble: [ros-jazzy-behavior-tree-ros]
 behavior_tree_strawberry:
   ubuntu:
     xenial: [ros-kinetic-behavior-tree-strawberry]
     bionic: [ros-melodic-behavior-tree-strawberry]
     focal: [ros-noetic-behavior-tree-strawberry]
+    noble: [ros-jazzy-behavior-tree-strawberry]
 behavior_tree_cpp:
   ubuntu:
     bionic: [ros-melodic-behavior-tree-cpp]
@@ -276,6 +280,7 @@ behavior_tree_haru:
     bionic: [ros-melodic-behavior-tree-haru]
     focal: [ros-noetic-behavior-tree-haru]
     xenial: [ros-kinetic-behavior-tree-haru]
+    noble: [ros-jazzy-behavior-tree-haru]
 
 # Sensors
 azure_kinect_ros_driver:
