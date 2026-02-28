@@ -1156,3 +1156,10 @@ haru_recorder:
     - ros-humble-haru-recorder
     noble:
     - ros-jazzy-haru-recorder
+
+haru_speech_ros:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-speech-ros
+    noble:
+    - ros-jazzy-haru-speech-ros
