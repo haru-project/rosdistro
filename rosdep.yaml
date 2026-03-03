@@ -372,6 +372,10 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+libsdl2-dev:
+  ubuntu: [libsdl2-dev]
+libopencv-dev:
+  ubuntu: [libopencv-dev]
 libqt5svg5-dev:
   ubuntu: [libqt5svg5-dev]
 qtbase5-dev:
