@@ -1167,3 +1167,10 @@ haru_speech_ros:
     - ros-humble-haru-speech-ros
     noble:
     - ros-jazzy-haru-speech-ros
+
+zdepth_image_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-zdepth-image-transport
+    noble:
+    - ros-jazzy-zdepth-image-transport
