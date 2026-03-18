@@ -1174,3 +1174,10 @@ zdepth_image_transport:
     - ros-humble-zdepth-image-transport
     noble:
     - ros-jazzy-zdepth-image-transport
+
+turbojpeg_compressed_image_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-turbojpeg-compressed-image-transport
+    noble:
+    - ros-jazzy-turbojpeg-compressed-image-transport
