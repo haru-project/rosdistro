@@ -372,6 +372,8 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+libavutil-dev:
+  ubuntu: [libavutil-dev]
 libswresample-dev:
   ubuntu: [libswresample-dev]
 libsdl2-dev:
