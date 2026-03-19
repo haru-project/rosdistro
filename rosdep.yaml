@@ -1181,3 +1181,16 @@ turbojpeg_compressed_image_transport:
     - ros-humble-turbojpeg-compressed-image-transport
     noble:
     - ros-jazzy-turbojpeg-compressed-image-transport
+
+ffmpeg_encoder_decoder:
+  ubuntu:
+    jammy:
+    - ros-humble-ffmpeg-encoder-decoder
+    noble:
+    - ros-jazzy-ffmpeg-encoder-decoder
+ffmpeg_image_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-ffmpeg-image-transport
+    noble:
+    - ros-jazzy-ffmpeg-image-transport
