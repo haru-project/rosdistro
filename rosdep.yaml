@@ -372,6 +372,8 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+libswresample-dev:
+  ubuntu: [libswresample-dev]
 libsdl2-dev:
   ubuntu: [libsdl2-dev]
 libopencv-dev:
