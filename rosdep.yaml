@@ -1203,12 +1203,16 @@ ffmpeg_image_transport:
     noble:
     - ros-jazzy-ffmpeg-image-transport
 
+# Web Projector
 haru_web_projector:
   ubuntu:
     noble:
     - ros-jazzy-haru-web-projector
-
 haru_web_projector_interfaces:
   ubuntu:
     noble:
     - ros-jazzy-haru-web-projector-interfaces
+behavior_tree_web_projector:
+  ubuntu:
+    noble:
+    - ros-jazzy-behavior-tree-web-projector
