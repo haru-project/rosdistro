@@ -1202,3 +1202,13 @@ ffmpeg_image_transport:
     - ros-humble-ffmpeg-image-transport
     noble:
     - ros-jazzy-ffmpeg-image-transport
+
+haru_web_projector:
+  ubuntu:
+    noble:
+    - ros-jazzy-haru-web-projector
+
+haru_web_projector_interfaces:
+  ubuntu:
+    noble:
+    - ros-jazzy-haru-web-projector-interfaces
