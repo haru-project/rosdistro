@@ -565,14 +565,6 @@ python3.10-venv:
   ubuntu:
     focal: [python3.10-venv]
 
-auto_release_repo_2:
-  ubuntu:
-    jammy: [ros-humble-auto-release-repo-2]
-    noble: [ros-jazzy-auto-release-repo-2]
-auto_release_repo_3:
-  ubuntu:
-    jammy: [ros-humble-auto-release-repo-3]
-    noble: [ros-jazzy-auto-release-repo-3]
 behavior_knowrob:
   ubuntu:
     jammy: [ros-humble-behavior-knowrob]
