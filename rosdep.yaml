@@ -349,6 +349,9 @@ libpango-1.0-0:
 libatk1.0-0:
   ubuntu:
     noble: [libatk1.0-0]
+libcairo2:
+  ubuntu:
+    noble: [libcairo2]
 libsoup-3.0-0:
   ubuntu:
     noble: [libsoup-3.0-0]
