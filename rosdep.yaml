@@ -1063,3 +1063,10 @@ haru_web_projector_interfaces:
 behavior_tree_web_projector:
   ubuntu:
     noble: [ros-jazzy-behavior-tree-web-projector]
+
+haru_viz:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-viz
+    noble:
+    - ros-jazzy-haru-viz
