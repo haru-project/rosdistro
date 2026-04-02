@@ -564,6 +564,9 @@ python3.10-dev:
 python3.10-venv:
   ubuntu:
     focal: [python3.10-venv]
+nodejs_20:
+  ubuntu:
+    noble: [nodejs]
 
 behavior_knowrob:
   ubuntu:
@@ -1067,6 +1070,6 @@ behavior_tree_web_projector:
 haru_viz:
   ubuntu:
     jammy:
-    - ros-humble-haru-viz
+      - ros-humble-haru-viz
     noble:
-    - ros-jazzy-haru-viz
+      - ros-jazzy-haru-viz
