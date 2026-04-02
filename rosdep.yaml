@@ -566,7 +566,7 @@ python3.10-venv:
     focal: [python3.10-venv]
 nodejs_20:
   ubuntu:
-    noble: [nodejs]
+    noble: [haru-nodejs-20]
 
 behavior_knowrob:
   ubuntu:
