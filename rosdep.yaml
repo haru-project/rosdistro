@@ -1073,3 +1073,28 @@ haru_viz:
       - ros-humble-haru-viz
     noble:
       - ros-jazzy-haru-viz
+
+audio_opus_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-opus-transport
+    noble:
+    - ros-jazzy-audio-opus-transport
+audio_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-transport
+    noble:
+    - ros-jazzy-audio-transport
+audio_transport_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-transport-msgs
+    noble:
+    - ros-jazzy-audio-transport-msgs
+haru2_lip_sync:
+  ubuntu:
+    jammy:
+    - ros-humble-haru2-lip-sync
+    noble:
+    - ros-jazzy-haru2-lip-sync
