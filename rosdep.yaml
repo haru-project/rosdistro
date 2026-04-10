@@ -435,6 +435,12 @@ zz_depends:
     focal: [ros-noetic-zz-depends]
 
 # Non-ROS dependencies
+libopus:
+  ubuntu:
+    noble: [libopus]
+libopus-dev:
+  ubuntu:
+    noble: [libopus-dev]
 libasound2-dev:
   ubuntu:
     noble: [libasound2-dev]
