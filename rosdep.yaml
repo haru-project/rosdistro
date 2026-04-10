@@ -437,7 +437,7 @@ zz_depends:
 # Non-ROS dependencies
 libopus:
   ubuntu:
-    noble: [libopus]
+    noble: [libopus0]
 libopus-dev:
   ubuntu:
     noble: [libopus-dev]
