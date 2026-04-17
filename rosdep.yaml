@@ -1104,3 +1104,10 @@ haru2_lip_sync:
     - ros-humble-haru2-lip-sync
     noble:
     - ros-jazzy-haru2-lip-sync
+
+insta360_ros_driver:
+  ubuntu:
+    jammy:
+    - ros-humble-insta360-ros-driver
+    noble:
+    - ros-jazzy-insta360-ros-driver
