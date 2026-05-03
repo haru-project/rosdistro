@@ -1111,3 +1111,10 @@ insta360_ros_driver:
     - ros-humble-insta360-ros-driver
     noble:
     - ros-jazzy-insta360-ros-driver
+
+haru_domain_bridge:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-domain-bridge
+    noble:
+    - ros-jazzy-haru-domain-bridge
