@@ -1118,3 +1118,10 @@ haru_domain_bridge:
     - ros-humble-haru-domain-bridge
     noble:
     - ros-jazzy-haru-domain-bridge
+
+agent_memory_interfaces:
+  ubuntu:
+    jammy:
+    - ros-humble-agent-memory-interfaces
+    noble:
+    - ros-jazzy-agent-memory-interfaces
