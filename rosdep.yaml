@@ -1125,3 +1125,46 @@ agent_memory_interfaces:
     - ros-humble-agent-memory-interfaces
     noble:
     - ros-jazzy-agent-memory-interfaces
+
+audio_capture:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-capture
+    noble:
+    - ros-jazzy-audio-capture
+audio_capture_lifecycle:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-capture-lifecycle
+    noble:
+    - ros-jazzy-audio-capture-lifecycle
+audio_common_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-common-msgs
+    noble:
+    - ros-jazzy-audio-common-msgs
+audio_play:
+  ubuntu:
+    jammy:
+    - ros-humble-audio-play
+    noble:
+    - ros-jazzy-audio-play
+haru2_asr_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-haru2-asr-msgs
+    noble:
+    - ros-jazzy-haru2-asr-msgs
+haru2_audio_common:
+  ubuntu:
+    jammy:
+    - ros-humble-haru2-audio-common
+    noble:
+    - ros-jazzy-haru2-audio-common
+sound_play:
+  ubuntu:
+    jammy:
+    - ros-humble-sound-play
+    noble:
+    - ros-jazzy-sound-play
