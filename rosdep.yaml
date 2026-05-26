@@ -1168,3 +1168,16 @@ sound_play:
     - ros-humble-sound-play
     noble:
     - ros-jazzy-sound-play
+
+dropbox-file-provider:
+  ubuntu:
+    noble:
+    - ros-jazzy-dropbox-file-provider
+dropbox_file_provider:
+  ubuntu:
+    noble:
+    - ros-jazzy-dropbox-file-provider
+replay_testing:
+  ubuntu:
+    noble:
+    - ros-jazzy-replay-testing
