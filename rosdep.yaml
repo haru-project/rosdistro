@@ -1169,6 +1169,11 @@ sound_play:
     noble:
     - ros-jazzy-sound-play
 
+python3-dropbox:
+  ubuntu:
+    noble:
+    - python3-dropbox
+
 dropbox-file-provider:
   ubuntu:
     noble:
