@@ -1186,3 +1186,10 @@ replay_testing:
   ubuntu:
     noble:
     - ros-jazzy-replay-testing
+
+replay_testing_example:
+  ubuntu:
+    jammy:
+    - ros-humble-replay-testing-example
+    noble:
+    - ros-jazzy-replay-testing-example
