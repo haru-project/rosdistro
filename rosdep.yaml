@@ -1200,3 +1200,10 @@ perception_testing:
     - ros-humble-perception-testing
     noble:
     - ros-jazzy-perception-testing
+
+haru_nlp_server:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-nlp-server
+    noble:
+    - ros-jazzy-haru-nlp-server
