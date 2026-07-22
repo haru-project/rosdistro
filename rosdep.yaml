@@ -1207,3 +1207,10 @@ haru_nlp_server:
     - ros-humble-haru-nlp-server
     noble:
     - ros-jazzy-haru-nlp-server
+
+haru_timeline_player:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-timeline-player
+    noble:
+    - ros-jazzy-haru-timeline-player
