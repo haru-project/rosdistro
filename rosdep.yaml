@@ -1214,3 +1214,10 @@ haru_timeline_player:
     - ros-humble-haru-timeline-player
     noble:
     - ros-jazzy-haru-timeline-player
+
+haru_sing_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-sing-msgs
+    noble:
+    - ros-jazzy-haru-sing-msgs
