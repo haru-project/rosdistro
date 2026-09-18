@@ -1221,3 +1221,10 @@ haru_sing_msgs:
     - ros-humble-haru-sing-msgs
     noble:
     - ros-jazzy-haru-sing-msgs
+
+domain_bridge:
+  ubuntu:
+    jammy:
+    - ros-humble-domain-bridge
+    noble:
+    - ros-jazzy-domain-bridge
