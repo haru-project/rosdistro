@@ -1228,3 +1228,8 @@ domain_bridge:
     - ros-humble-domain-bridge
     noble:
     - ros-jazzy-domain-bridge
+
+# CLI used to recover file-compressed recordings.
+zstd:
+  ubuntu:
+    noble: [zstd]
