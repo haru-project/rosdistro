@@ -1237,3 +1237,136 @@ domain_bridge:
 zstd:
   ubuntu:
     noble: [zstd]
+
+liblz4_vendor:
+  ubuntu:
+    jammy:
+    - ros-humble-liblz4-vendor
+    noble:
+    - ros-jazzy-liblz4-vendor
+mcap_vendor:
+  ubuntu:
+    jammy:
+    - ros-humble-mcap-vendor
+    noble:
+    - ros-jazzy-mcap-vendor
+rosbag2:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2
+    noble:
+    - ros-jazzy-rosbag2
+rosbag2_compression:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-compression
+    noble:
+    - ros-jazzy-rosbag2-compression
+rosbag2_compression_zstd:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-compression-zstd
+    noble:
+    - ros-jazzy-rosbag2-compression-zstd
+rosbag2_cpp:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-cpp
+    noble:
+    - ros-jazzy-rosbag2-cpp
+rosbag2_examples_cpp:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-examples-cpp
+    noble:
+    - ros-jazzy-rosbag2-examples-cpp
+rosbag2_interfaces:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-interfaces
+    noble:
+    - ros-jazzy-rosbag2-interfaces
+rosbag2_performance_benchmarking:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-performance-benchmarking
+    noble:
+    - ros-jazzy-rosbag2-performance-benchmarking
+rosbag2_performance_benchmarking_msgs:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-performance-benchmarking-msgs
+    noble:
+    - ros-jazzy-rosbag2-performance-benchmarking-msgs
+rosbag2_py:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-py
+    noble:
+    - ros-jazzy-rosbag2-py
+rosbag2_storage:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-storage
+    noble:
+    - ros-jazzy-rosbag2-storage
+rosbag2_storage_default_plugins:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-storage-default-plugins
+    noble:
+    - ros-jazzy-rosbag2-storage-default-plugins
+rosbag2_storage_mcap:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-storage-mcap
+    noble:
+    - ros-jazzy-rosbag2-storage-mcap
+rosbag2_storage_sqlite3:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-storage-sqlite3
+    noble:
+    - ros-jazzy-rosbag2-storage-sqlite3
+rosbag2_test_common:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-test-common
+    noble:
+    - ros-jazzy-rosbag2-test-common
+rosbag2_test_msgdefs:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-test-msgdefs
+    noble:
+    - ros-jazzy-rosbag2-test-msgdefs
+rosbag2_tests:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-tests
+    noble:
+    - ros-jazzy-rosbag2-tests
+rosbag2_transport:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-transport
+    noble:
+    - ros-jazzy-rosbag2-transport
+shared_queues_vendor:
+  ubuntu:
+    jammy:
+    - ros-humble-shared-queues-vendor
+    noble:
+    - ros-jazzy-shared-queues-vendor
+sqlite3_vendor:
+  ubuntu:
+    jammy:
+    - ros-humble-sqlite3-vendor
+    noble:
+    - ros-jazzy-sqlite3-vendor
+zstd_vendor:
+  ubuntu:
+    jammy:
+    - ros-humble-zstd-vendor
+    noble:
+    - ros-jazzy-zstd-vendor
