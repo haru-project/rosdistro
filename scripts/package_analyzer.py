@@ -126,28 +126,21 @@ class PackageAnalyzer:
         package_dir = os.path.dirname(
             package_xml_path) if package_xml_path else ''
 
-        # Check for CMakeLists.txt in the same directory
-        cmake_path = os.path.join(
-            package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
-
+        build_files = {'CMakeLists.txt', 'setup.py'}
         if tree_paths is not None:
-            cmake_path = os.path.join(
-                package_dir, 'CMakeLists.txt') if package_dir else 'CMakeLists.txt'
-            has_cmake = cmake_path in tree_paths
+            has_build_file = any(
+                os.path.join(package_dir, filename) in tree_paths
+                for filename in build_files)
         else:
-            # Get directory contents from default branch
             contents = self.github_client.get_repository_contents(
                 owner, repo, package_dir, ref)
-            if not contents:
-                return False
+            has_build_file = any(
+                item['type'] == 'file' and item['name'] in build_files
+                for item in (contents or []))
 
-            # Look for required files
-            has_cmake = any(
-                item['name'] == 'CMakeLists.txt' for item in contents if item['type'] == 'file')
-
-        if not has_cmake:
+        if not has_build_file:
             logger.debug(
-                f"No CMakeLists.txt found in {owner}/{repo}/{package_dir}")
+                f"No CMakeLists.txt or setup.py found in {owner}/{repo}/{package_dir}")
             return False
 
         return True
@@ -174,7 +167,7 @@ class PackageAnalyzer:
             owner, repo_name, default_branch)
         if tree_paths is not None:
             package_xml_files = [
-                path for path in tree_paths if path.endswith('package.xml')]
+                path for path in sorted(tree_paths) if os.path.basename(path) == 'package.xml']
         else:
             # Find all package.xml files recursively using default branch for efficiency
             package_xml_files = self.github_client.find_package_xml_files(
