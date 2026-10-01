@@ -1370,3 +1370,16 @@ zstd_vendor:
     - ros-humble-zstd-vendor
     noble:
     - ros-jazzy-zstd-vendor
+
+agent_memory:
+  ubuntu:
+    jammy:
+    - ros-humble-agent-memory
+    noble:
+    - ros-jazzy-agent-memory
+agent_memory_backend:
+  ubuntu:
+    jammy:
+    - ros-humble-agent-memory-backend
+    noble:
+    - ros-jazzy-agent-memory-backend
