@@ -1383,3 +1383,52 @@ agent_memory_backend:
     - ros-humble-agent-memory-backend
     noble:
     - ros-jazzy-agent-memory-backend
+
+agent_reasoner_monitor:
+  ubuntu:
+    jammy:
+    - ros-humble-agent-reasoner-monitor
+    noble:
+    - ros-jazzy-agent-reasoner-monitor
+context_debugger:
+  ubuntu:
+    jammy:
+    - ros-humble-context-debugger
+    noble:
+    - ros-jazzy-context-debugger
+context_manager:
+  ubuntu:
+    jammy:
+    - ros-humble-context-manager
+    noble:
+    - ros-jazzy-context-manager
+haru2_asr_ros:
+  ubuntu:
+    jammy:
+    - ros-humble-haru2-asr-ros
+    noble:
+    - ros-jazzy-haru2-asr-ros
+haru_diagnostics:
+  ubuntu:
+    jammy:
+    - ros-humble-haru-diagnostics
+    noble:
+    - ros-jazzy-haru-diagnostics
+pyharu:
+  ubuntu:
+    jammy:
+    - ros-humble-pyharu
+    noble:
+    - ros-jazzy-pyharu
+ros2bag:
+  ubuntu:
+    jammy:
+    - ros-humble-ros2bag
+    noble:
+    - ros-jazzy-ros2bag
+rosbag2_examples_py:
+  ubuntu:
+    jammy:
+    - ros-humble-rosbag2-examples-py
+    noble:
+    - ros-jazzy-rosbag2-examples-py
