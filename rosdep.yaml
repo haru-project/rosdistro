@@ -1432,3 +1432,10 @@ rosbag2_examples_py:
     - ros-humble-rosbag2-examples-py
     noble:
     - ros-jazzy-rosbag2-examples-py
+
+behaviortree_cpp:
+  ubuntu:
+    jammy:
+    - ros-humble-behaviortree-cpp
+    noble:
+    - ros-jazzy-behaviortree-cpp
