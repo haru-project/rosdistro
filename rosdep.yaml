@@ -1446,3 +1446,8 @@ haru2_web:
     - ros-humble-haru2-web
     noble:
     - ros-jazzy-haru2-web
+
+# System dependencies
+libwebrtc-audio-processing-dev:
+  ubuntu:
+    noble: [libwebrtc-audio-processing-dev]
