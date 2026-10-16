@@ -1439,3 +1439,10 @@ behaviortree_cpp:
     - ros-humble-behaviortree-cpp
     noble:
     - ros-jazzy-behaviortree-cpp
+
+haru2_web:
+  ubuntu:
+    jammy:
+    - ros-humble-haru2-web
+    noble:
+    - ros-jazzy-haru2-web
