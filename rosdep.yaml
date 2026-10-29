@@ -1451,3 +1451,10 @@ haru2_web:
 libwebrtc-audio-processing-dev:
   ubuntu:
     noble: [libwebrtc-audio-processing-dev]
+
+robot_adapter:
+  ubuntu:
+    jammy:
+    - ros-humble-robot-adapter
+    noble:
+    - ros-jazzy-robot-adapter
