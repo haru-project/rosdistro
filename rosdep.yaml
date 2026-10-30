@@ -1448,6 +1448,10 @@ haru2_web:
     - ros-jazzy-haru2-web
 
 # System dependencies
+cppzmq-dev:
+  ubuntu:
+    noble: [cppzmq-dev]
+
 libwebrtc-audio-processing-dev:
   ubuntu:
     noble: [libwebrtc-audio-processing-dev]
