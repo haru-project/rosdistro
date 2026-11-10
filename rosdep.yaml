@@ -1,7 +1,8 @@
 # This file is used to define the dependencies of the packages in the repository.
 
 libnss-mdns:
-  ubuntu: [libnss-mdns]
+  ubuntu:
+    noble: [libnss-mdns]
   debian: [libnss-mdns]
 
 # Haru 2
